@@ -50,7 +50,12 @@ public class StatusComboBoxRenderer implements ListCellRenderer {
                 break;
         }
 
-        // label.setFont(new Font("Hobo Std", Font.PLAIN, 12));
+        label.setBackground(Color.white);
+        label.setOpaque(true);
+
+        if (cellHasFocus || isSelected) {
+            label.setBackground(new Color(10069941));
+        }
         label.setIcon(img);
 
         return label;

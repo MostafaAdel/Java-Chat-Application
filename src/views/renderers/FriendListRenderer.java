@@ -12,23 +12,31 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.ListCellRenderer;
+import views.FriendElement;
 
 /**
  *
  * @author Mohamed
  */
-public class FriendListRenderer implements ListCellRenderer{
-
+public class FriendListRenderer implements ListCellRenderer {
+    
+    private static boolean colored;
+    
     @Override
     public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+
         
-        JLabel eleemnt = new JLabel((String)value, new ImageIcon(getClass().getResource("/img/Penguins.jpg")), 10);
+        FriendElement element = new FriendElement();
+        element.getDisplayName().setText(value.toString());
         
-      //  if (isSelected || cellHasFocus)
-          //  eleemnt.setBackground(Color.blue);
-        return eleemnt;
+        if(colored){
+            element.setBackground(new Color(15529466));
+            colored = false;
+            return element;
+        }
+        
+        colored = true;
+        return element;
     }
 
-
-    
 }

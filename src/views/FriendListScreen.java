@@ -5,13 +5,16 @@
  */
 package views;
 
-
 import views.renderers.FriendListRenderer;
 import views.renderers.StatusComboBoxRenderer;
 import com.seaglasslookandfeel.SeaGlassLookAndFeel;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Toolkit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -28,32 +31,32 @@ public class FriendListScreen extends javax.swing.JFrame {
      */
     public FriendListScreen() {
         initComponents();
-        
+
         setVisible(true);
         
         try {
             //Set look and feel
             UIManager.setLookAndFeel(new NimbusLookAndFeel());
             SwingUtilities.updateComponentTreeUI(this);
-            
+
         } catch (UnsupportedLookAndFeelException ex) {
             Logger.getLogger(FriendListScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
+
         //freind list
         friendList.setModel(new DefaultListModel());
-        String[] names = {"Ahmed", "Mohamed"};
+        String[] names = {"Ahmed", "Mohamed", "Ali", "Mona", "tata7", "mostafa", "Rania", "Mai", "sa3ed","yyyy", "fff"};
         friendList.setListData(names);
         friendList.setCellRenderer(new FriendListRenderer());
-        
+
         //status
         status.addItem("Available");
         status.addItem("Busy");
         status.addItem("Invisible");
         status.addItem("Drinking Coffee");
         status.setRenderer(new StatusComboBoxRenderer());
-        
-    }   
+
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -64,25 +67,23 @@ public class FriendListScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        header = new javax.swing.JLabel();
         userInfo = new javax.swing.JPanel();
         photo = new javax.swing.JLabel();
         status = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
-        jTextField3 = new javax.swing.JTextField();
+        search_box = new javax.swing.JTextField();
         jTabbedPane3 = new javax.swing.JTabbedPane();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         friendList = new javax.swing.JList();
-        jButton1 = new javax.swing.JButton();
+        addFriendButton = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        header = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        header.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/blue_logo.png"))); // NOI18N
-        getContentPane().add(header, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 60));
 
         userInfo.setBackground(new java.awt.Color(204, 255, 255));
 
@@ -90,7 +91,23 @@ public class FriendListScreen extends javax.swing.JFrame {
         photo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Koala.jpg"))); // NOI18N
         photo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(88, 174, 182), 2));
         photo.setPreferredSize(new java.awt.Dimension(2, 2));
+        photo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                photoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                photoMouseExited(evt);
+            }
+        });
 
+        status.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                statusMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                statusMouseExited(evt);
+            }
+        });
         status.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 statusActionPerformed(evt);
@@ -112,7 +129,7 @@ public class FriendListScreen extends javax.swing.JFrame {
                 .addGroup(userInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(82, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         userInfoLayout.setVerticalGroup(
             userInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,16 +141,47 @@ public class FriendListScreen extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(status, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        getContentPane().add(userInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 320, 90));
+        getContentPane().add(userInfo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 300, 90));
 
         jPanel8.setBackground(new java.awt.Color(88, 174, 182));
         jPanel8.setMinimumSize(new java.awt.Dimension(316, 600));
-        jPanel8.setPreferredSize(new java.awt.Dimension(316, 440));
+        jPanel8.setPreferredSize(new java.awt.Dimension(300, 500));
 
-        jTextField3.setText("Search");
+        search_box.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        search_box.setForeground(new java.awt.Color(153, 153, 153));
+        search_box.setText("   Search friend");
+        search_box.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 255, 255)));
+        search_box.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                search_boxMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                search_boxMouseExited(evt);
+            }
+        });
+        search_box.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                search_boxActionPerformed(evt);
+            }
+        });
+        search_box.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                search_boxFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                search_boxFocusLost(evt);
+            }
+        });
+        search_box.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                search_boxKeyPressed(evt);
+            }
+        });
+
+        jTabbedPane3.setPreferredSize(new java.awt.Dimension(270, 417));
 
         friendList.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Ahmed", "Mohamed", "Mai", "Mahmoud", " " };
@@ -151,19 +199,22 @@ public class FriendListScreen extends javax.swing.JFrame {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 356, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
         );
 
         jTabbedPane3.addTab("Friends", jPanel7);
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add_user.png"))); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        addFriendButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add_friend.png"))); // NOI18N
+        addFriendButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                addFriendButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                addFriendButtonMouseExited(evt);
             }
         });
 
@@ -172,32 +223,54 @@ public class FriendListScreen extends javax.swing.JFrame {
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTabbedPane3)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(23, 23, 23)))
-                .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                        .addComponent(addFriendButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(search_box, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                        .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26))))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(174, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(addFriendButton)
+                    .addComponent(search_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTabbedPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(129, Short.MAX_VALUE))
         );
 
-        jPanel8Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton1, jTextField3});
+        jPanel8Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {addFriendButton, search_box});
 
-        getContentPane().add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 320, 450));
+        getContentPane().add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 150, 300, 550));
+
+        jPanel1.setBackground(new java.awt.Color(88, 174, 182));
+
+        header.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/blue_logo2.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(163, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, 38, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 60));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -206,18 +279,74 @@ public class FriendListScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_statusActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       
-        new AddFriend().setVisible(true);
-        //dispose();
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void friendListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_friendListValueChanged
         // TODO add your handling code here:
-      
-        
+
+
     }//GEN-LAST:event_friendListValueChanged
+
+    private void search_boxFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_search_boxFocusGained
+
+        if (search_box.getText().equals("   Search friend")) {
+            search_box.setText("   ");
+            search_box.setForeground(Color.BLACK);
+        }
+    }//GEN-LAST:event_search_boxFocusGained
+
+    private void search_boxMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_search_boxMouseEntered
+
+        search_box.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0), 2));
+    }//GEN-LAST:event_search_boxMouseEntered
+
+    private void search_boxFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_search_boxFocusLost
+
+        if (search_box.getText().length() <= 3) {
+            search_box.setText("   Search friend");
+            search_box.setForeground(Color.gray);
+        }
+    }//GEN-LAST:event_search_boxFocusLost
+
+    private void search_boxMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_search_boxMouseExited
+        search_box.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 255, 255)));
+    }//GEN-LAST:event_search_boxMouseExited
+
+    private void photoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_photoMouseEntered
+        photo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3));
+    }//GEN-LAST:event_photoMouseEntered
+
+    private void photoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_photoMouseExited
+        photo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(88, 174, 182), 2));
+    }//GEN-LAST:event_photoMouseExited
+
+    private void search_boxKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_search_boxKeyPressed
+        if (search_box.getText().length() < 3) {
+            search_box.setText("   ");
+        }
+    }//GEN-LAST:event_search_boxKeyPressed
+
+    private void search_boxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_boxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_search_boxActionPerformed
+
+    private void addFriendButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addFriendButtonMouseEntered
+        addFriendButton.setIcon(new ImageIcon(getClass().getResource("/img/add_friend_focused.png")));
+        
+        
+        
+    }//GEN-LAST:event_addFriendButtonMouseEntered
+
+    private void addFriendButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addFriendButtonMouseExited
+        addFriendButton.setIcon(new ImageIcon(getClass().getResource("/img/add_friend.png")));
+        
+    }//GEN-LAST:event_addFriendButtonMouseExited
+
+    private void statusMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_statusMouseEntered
+        status.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0), 2));
+    }//GEN-LAST:event_statusMouseEntered
+
+    private void statusMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_statusMouseExited
+        status.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 255, 255)));
+    }//GEN-LAST:event_statusMouseExited
 
     /**
      * @param args the command line arguments
@@ -256,16 +385,17 @@ public class FriendListScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel addFriendButton;
     private javax.swing.JList friendList;
     private javax.swing.JLabel header;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane3;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JLabel photo;
+    private javax.swing.JTextField search_box;
     private javax.swing.JComboBox status;
     private javax.swing.JPanel userInfo;
     // End of variables declaration//GEN-END:variables
