@@ -1,4 +1,0 @@
-- light blue: 58aeb6
-- Orange: f8931d
-- more blue: 2775ac
-- Font: Hobo Std
