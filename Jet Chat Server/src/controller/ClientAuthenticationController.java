@@ -44,17 +44,54 @@ public class ClientAuthenticationController implements ClientAuthenticationContr
 
     /**
      * @param userName
+     * @pdOid e11ba090-748b-4ea3-babe-e9b25a5d4fa9
+     */
+    /**
+     * @param userName
+     * @return UserEntity
+     * @pdOid c399a949-29b3-4779-8bff-9ab9d5d71ffe
+     */
+    @Override
+    public UserEntity userViewData(String userName) {
+        UserEntity user = new UserEntity();
+        try {
+            ResultSet result;
+            result = DB_Connection.selectQuery("SELECT * FROM USER WHERE USERNAME = '" + userName + "'");
+            while (result.next()) {
+                user.setUsername(result.getString("USERNAME"));
+                user.setUserPassword(result.getString("USERPASSWORD"));
+                user.setFirstName((result.getString("FIRSTNAME")));
+                user.setLastName(result.getString("LASTNAME"));
+                user.setDateOfBirth(result.getString("DATEOFBIRTH"));
+                user.setMode(result.getInt("MODE"));
+                user.setStatus(result.getBoolean("STATUS"));
+                user.setGender(result.getString("GENDER").charAt(0));
+                // user.setImageProfile(result.getBinaryStream(""));
+                return user;
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("?User mish hena");
+            ex.printStackTrace();
+            return null;
+        }
+        System.out.println("?User mish hena");
+        return user;
+    }
+
+    @Override
+    /**
+     * @param userName
      * @param password
      * @pdOid 47782f03-aaf6-4f26-85db-06e03b6da19a
      */
-    public boolean signIn(String userName, String password) {
-
+    public boolean singIN(String username, String password) {
         try {
             ResultSet result;
             result = DB_Connection.selectQuery("SELECT USERNAME, USERPASSWORD FROM USER");
             while (result.next()) {
-                if (userName.equalsIgnoreCase(result.getString("USERNAME")) && password.equals(result.getString("USERPASSWORD"))) {
-                    
+                if (username.equalsIgnoreCase(result.getString("USERNAME")) && password.equals(result.getString("USERPASSWORD"))) {
+
                     System.out.println("Sing Sucesses");
                     return true;
                 } else {
@@ -71,15 +108,19 @@ public class ClientAuthenticationController implements ClientAuthenticationContr
         }
     }
 
+    @Override
     /**
-     * @param user
-     * @pdOid bd7a7e0d-c1c7-4db8-864f-a2dc633f6b57
+     * @param UserEntity user
      */
-    public boolean signUp() {
-
+    public boolean singUp(UserEntity user) {
         try {
+            int status  = 0;
+            if (user.isStatus()) {
+                status = 1;
+            }
             DB_Connection.updateQuery("INSERT INTO USER (USERNAME, FIRSTNAME, LASTNAME,USERPASSWORD,DATEOFBIRTH,GENDER,MOBILENUMBER,MODE,STATUS)VALUES "
-                    + "('mostafa90','Mostafa','Adel','12345','2-6-90','M','010555','1','1')");
+                    + "('" + user.getUsername() + "','" + user.getFirstName() + "','" + user.getLastName() + "','" + user.getUserPassword()
+                    + "','" + user.getDateOfBirth() + "','" + user.getGender() + "','"+user.getMobileNumber()+"','"+user.getMode()+"','" + status+"')");
 
             return true;
         } catch (SQLException ex) {
@@ -87,46 +128,12 @@ public class ClientAuthenticationController implements ClientAuthenticationContr
             ex.printStackTrace();
             return false;
         }
+
     }
 
-    /**
-     * @param userName
-     * @pdOid e11ba090-748b-4ea3-babe-e9b25a5d4fa9
-     */
-    public boolean signOut(String userName) {
-        // TODO: implement
+    @Override
+    public boolean singOut(String username) {
         return false;
-    }
-
-    /**
-     * @param userName
-     * @pdOid c399a949-29b3-4779-8bff-9ab9d5d71ffe
-     */
-    public UserEntity userViewData(String userName) {
-        UserEntity user =new UserEntity();
-        try {
-            ResultSet result;
-            result = DB_Connection.selectQuery("SELECT * FROM USER WHERE USERNAME = '" + userName + "'");
-            while(result.next()){
-            user.setUsername(result.getString("USERNAME"));
-            user.setUserPassword(result.getString("USERPASSWORD"));
-            user.setFirstName((result.getString("FIRSTNAME")));
-            user.setLastName(result.getString("LASTNAME"));
-            user.setDateOfBirth(result.getString("DATEOFBIRTH"));
-            user.setMode(result.getInt("MODE"));
-            user.setStatus(result.getBoolean("STATUS"));
-            user.setGender (result.getString("GENDER").charAt(0));
-           // user.setImageProfile(result.getBinaryStream(""));
-            return user;
-            }
-            
-        } catch (SQLException ex) {
-            System.out.println("?User mish hena");
-            ex.printStackTrace();
-            return null;
-        }
-        System.out.println("?User mish hena");
-        return user;
     }
 
 }

@@ -14,14 +14,23 @@ import entity.UserEntity;
  */
 public class testing {
      public static void main(String[] args) {
-         UserEntity user;
+         UserEntity user = new UserEntity();
          ClientAuthenticationController client = new ClientAuthenticationController();
          //client.signUp();
-         client.signIn("mostafa90", "12345");
-         user = client.userViewData("mostafa90");
+         client.singIN("mostafa90", "12345");
+         user = client.userViewData("gaber92");
+        
          System.out.println(user.getFirstName());
          System.out.println(user.getLastName());
          System.out.println(user.getGender());
          System.out.println(user.getDateOfBirth());
+        /* user.setUsername("gaber92");
+         user.setUserPassword("12345");
+         user.setFirstName("Mohamed");
+         user.setLastName("Gaber");
+         user.setGender('M');
+         user.setMobileNumber("101020324");
+         user.setMode(1);
+         client.singUp(user);*/
     }
 }

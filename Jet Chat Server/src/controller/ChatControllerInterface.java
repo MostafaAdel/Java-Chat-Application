@@ -5,10 +5,12 @@
  */
 package controller;
 
+import entity.UserEntity;
+
 /**
  *
  * @author Mohamed
  */
 public interface ChatControllerInterface {
-    
+  
 }
