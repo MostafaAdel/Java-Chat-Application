@@ -9,17 +9,18 @@ package controller;
 import entity.UserEntity;
 import java.rmi.RemoteException;
 import java.rmi.server.RemoteObject;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.*;
 import services.ChatServiceInterface;
 
 
-public class ChatController implements ChatControllerInterface, ChatServiceInterface {
+public class ChatController extends UnicastRemoteObject implements ChatControllerInterface, ChatServiceInterface {
  
     private ServerControllerInterface serverController;
    
    /** @param ServerController
    **/
-    ChatController(ServerControllerInterface controller) {
+    ChatController(ServerControllerInterface controller) throws RemoteException{
       this.serverController = controller;
    }
 
