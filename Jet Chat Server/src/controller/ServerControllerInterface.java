@@ -4,7 +4,7 @@
  * Purpose: Defines the Interface ServerControllerInterface
  ***********************************************************************/
 
-package controllers;
+package controller;
 
 import datatypes.Advertisement;
 import java.util.*;

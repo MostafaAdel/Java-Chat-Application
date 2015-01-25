@@ -4,7 +4,7 @@
  * Purpose: Defines the Class ChatController
  ***********************************************************************/
 
-package controllers;
+package controller;
 
 import java.rmi.RemoteException;
 import java.rmi.server.RemoteObject;
