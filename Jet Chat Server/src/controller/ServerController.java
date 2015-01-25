@@ -8,7 +8,6 @@ package controller;
 
 import controller.ServerControllerInterface;
 import datatypes.Advertisement;
-import datatypes.User;
 import java.rmi.server.RemoteObject;
 import java.util.*;
 
