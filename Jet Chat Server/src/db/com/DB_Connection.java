@@ -24,7 +24,7 @@ public class DB_Connection {
         try {
             String url = "jdbc:mysql://localhost:3306/jetchat";
             Class.forName("com.mysql.jdbc.Driver");
-            conn = (Connection) DriverManager.getConnection(url, "root", "root");
+            conn = (Connection) DriverManager.getConnection(url, "root", "1234");
             return conn;
         } catch (SQLException ex) {
             ex.printStackTrace();

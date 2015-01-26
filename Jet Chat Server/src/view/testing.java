@@ -5,7 +5,7 @@
  */
 package view;
 
-import controller.ClientAuthenticationController;
+import controller.*;
 import entity.UserEntity;
 
 /**
@@ -17,8 +17,8 @@ public class testing {
          UserEntity user = new UserEntity();
          ClientAuthenticationController client = new ClientAuthenticationController();
          //client.signUp();
-         client.singIN("mostafa90", "12345");
-         user = client.userViewData("gaber92");
+         //client.singIN("mostafa90", "12345");
+         //user = client.userViewData("gaber92");
         
          System.out.println(user.getFirstName());
          System.out.println(user.getLastName());
@@ -32,5 +32,7 @@ public class testing {
          user.setMobileNumber("101020324");
          user.setMode(1);
          client.singUp(user);*/
+         FreindshipController freind=new FreindshipController(); 
+         freind.addFreind("rania", "may");
     }
 }
