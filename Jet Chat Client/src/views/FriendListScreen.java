@@ -31,7 +31,7 @@ import javax.swing.plaf.nimbus.NimbusLookAndFeel;
  * @author Mohamed
  */
 class myPhotofilter extends FileFilter {
-    
+
     @Override
     public boolean accept(File f) {
         if (f.getName().toLowerCase().endsWith("jpg") || f.getName().toLowerCase().endsWith("gif") || f.isDirectory()) {
@@ -40,7 +40,7 @@ class myPhotofilter extends FileFilter {
             return false;
         }
     }
-    
+
     @Override
     public String getDescription() {
         return "JPGE,GIF Images";
@@ -54,14 +54,14 @@ public class FriendListScreen extends javax.swing.JFrame {
      */
     public FriendListScreen() {
         initComponents();
-        
+
         setVisible(true);
-        
+
         try {
             //Set look and feel
             UIManager.setLookAndFeel(new NimbusLookAndFeel());
             SwingUtilities.updateComponentTreeUI(this);
-            
+
         } catch (UnsupportedLookAndFeelException ex) {
             Logger.getLogger(FriendListScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -78,7 +78,7 @@ public class FriendListScreen extends javax.swing.JFrame {
         status.addItem("Invisible");
         status.addItem("Drinking Coffee");
         status.setRenderer(new StatusComboBoxRenderer());
-        
+
     }
 
     /**
@@ -219,6 +219,18 @@ public class FriendListScreen extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public Object getElementAt(int i) { return strings[i]; }
         });
+        friendList.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+                friendListCaretPositionChanged(evt);
+            }
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+            }
+        });
+        friendList.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                friendListPropertyChange(evt);
+            }
+        });
         friendList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 friendListValueChanged(evt);
@@ -329,14 +341,12 @@ public class FriendListScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_statusActionPerformed
 
     private void friendListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_friendListValueChanged
-        Chatting chat = new Chatting();
-        chat.setVisible(true);// TODO add your handling code here:
 
 
     }//GEN-LAST:event_friendListValueChanged
 
     private void search_boxFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_search_boxFocusGained
-        
+
         if (search_box.getText().equals("   Search friend")) {
             search_box.setText("   ");
             search_box.setForeground(Color.BLACK);
@@ -344,12 +354,12 @@ public class FriendListScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_search_boxFocusGained
 
     private void search_boxMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_search_boxMouseEntered
-        
+
         search_box.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0), 2));
     }//GEN-LAST:event_search_boxMouseEntered
 
     private void search_boxFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_search_boxFocusLost
-        
+
         if (search_box.getText().length() <= 3) {
             search_box.setText("   Search friend");
             search_box.setForeground(Color.gray);
@@ -380,7 +390,7 @@ public class FriendListScreen extends javax.swing.JFrame {
 
     private void addFriendButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addFriendButtonMouseEntered
         addFriendButton.setIcon(new ImageIcon(getClass().getResource("/img/add_friend_focused.png")));
-        
+
 
     }//GEN-LAST:event_addFriendButtonMouseEntered
 
@@ -410,6 +420,14 @@ public class FriendListScreen extends javax.swing.JFrame {
             String imgpath = jfc.getSelectedFile().toString();
         }        // TODO add your handling code here:
     }//GEN-LAST:event_photoMousePressed
+
+    private void friendListPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_friendListPropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_friendListPropertyChange
+
+    private void friendListCaretPositionChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_friendListCaretPositionChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_friendListCaretPositionChanged
 
     /**
      * @param args the command line arguments
