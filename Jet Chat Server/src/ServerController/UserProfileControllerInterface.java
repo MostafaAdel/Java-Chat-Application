@@ -10,8 +10,8 @@ package ServerController;
  */
 public interface UserProfileControllerInterface {
     
-    boolean sendUserStatusToOnlineUsers();
-    boolean senduserModeToOnlineUsers();
+    boolean sendUserStatusToOnlineUsers(String userName);
+    boolean senduserModeToOnlineUsers(String userName);
     
     
 
