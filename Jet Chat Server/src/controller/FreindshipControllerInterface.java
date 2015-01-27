@@ -7,56 +7,80 @@ package controller;
 
 import entity.UserEntity;
 import java.util.Vector;
+
 /**
  *
  * @author Rania
  */
 public interface FreindshipControllerInterface {
-    
-     /**@param String userName
-     * @param  String  freindName
+
+    /**
+     * @param String userName
+     * @param String freindName
      */
-    /************************************************************/
-    boolean addFreind(String userName,String freindName);
-    
-      /**@param String userName
-     * @param  String  freindName
+    /**
+     * @param userName
+     *
+     * @param freindName
+     *
+     * @return boolean
+     *******************************************************
      */
-    /************************************************************/
-    UserEntity acceptInvitation (String userName,String freindName);
-    
-      /**@param String userName
-     * @param  String  freindName
+    boolean addFreind(String userName, String freindName);
+
+    /**
+     * @param String userName
+     * @param String freindName
      */
-    /************************************************************/
-    boolean ignoreInvitation (String userName,String freindName);
-    
-      /**@param String userName
-     * @param  String  freindName
+    /**
+     * @return UserEntity
+     *******************************************************
      */
-    /************************************************************/
-    
-    boolean rejectInvitation (String userName,String freindName);
-    
-      /**@param String userName
-     * @param  String  freindName
+    UserEntity acceptInvitation(String userName, String freindName);
+
+    /**
+     * @param String userName
+     * @param String freindName
      */
-    /************************************************************/
-    boolean deleteFreind(String userName,String freindName);
-      /**@param String userName
-     * 
+    /**
+     * *********************************************************
      */
-    /************************************************************/
-    Vector <UserEntity> getFreindList(String userName);
-      /**@param String userName
-     * 
+    boolean ignoreInvitation(String userName, String freindName);
+
+    /**
+     * @param String userName
+     * @param String freindName
      */
-    /************************************************************/
-    Vector <UserEntity> getFreindRequest(String userName);
-    
-    
-        
-    
-    
-    
+    /**
+     * *********************************************************
+     */
+    boolean rejectInvitation(String userName, String freindName);
+
+    /**
+     * @param String userName
+     * @param String freindName
+     */
+    /**
+     * *********************************************************
+     */
+    boolean deleteFreind(String userName, String freindName);
+
+    /**
+     * @param String userName
+     *
+     */
+    /**
+     * *********************************************************
+     */
+    Vector<UserEntity> getFreindList(String userName);
+
+    /**
+     * @param String userName
+     *
+     */
+    /**
+     * *********************************************************
+     */
+    Vector<UserEntity> getFreindRequest(String userName);
+
 }
