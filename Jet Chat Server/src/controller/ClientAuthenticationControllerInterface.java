@@ -6,12 +6,13 @@
 package controller;
 
 import entity.UserEntity;
+import java.rmi.Remote;
 
 /**
  *
  * @author Mostafa_ITI
  */
-interface ClientAuthenticationControllerInterface {
+interface ClientAuthenticationControllerInterface extends Remote{
    /** @param username 
     * @param password
     * @pdOid fab8b71e-0c5b-436a-a3a0-9c30af344535 */

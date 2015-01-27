@@ -6,13 +6,14 @@
 package controller;
 
 import entity.UserEntity;
+import java.rmi.Remote;
 import java.util.Vector;
 
 /**
  *
  * @author Rania
  */
-public interface FreindshipControllerInterface {
+public interface FreindshipControllerInterface extends Remote{
 
     /**
      * @param String userName
