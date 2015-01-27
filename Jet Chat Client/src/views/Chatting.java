@@ -1,0 +1,1016 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package views;
+
+import java.awt.Color;
+import java.awt.FileDialog;
+import javax.swing.JFileChooser;
+import javax.swing.JWindow;
+import javax.swing.*;
+import java.awt.GridLayout;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.*;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
+import java.awt.GraphicsEnvironment;
+import java.io.File;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+import java.awt.datatransfer.*;
+import java.awt.Toolkit;
+import javax.swing.event.PopupMenuEvent;
+import javax.swing.event.PopupMenuListener;
+
+/**
+ *
+ * @author rania
+ */
+public class Chatting extends javax.swing.JFrame {
+
+    /**
+     * Creates new form Chatting
+     */
+    int formatFlag = 0;
+    int emotionsFlag = 0;
+    String mode;
+    int jframHeight = this.getSize().height;
+    JWindow jw = new JWindow(this);
+    private JPanel jp = new JPanel();
+    private JLabel l1 = new JLabel();
+    private JLabel l2 = new JLabel();
+    private JLabel l3 = new JLabel();
+    private JLabel l4 = new JLabel();
+    private JLabel l5 = new JLabel();
+    private JLabel l6 = new JLabel();
+    private JLabel l7 = new JLabel();
+    private JLabel l8 = new JLabel();
+    private JLabel l9 = new JLabel();
+     private boolean isFontSelected;
+    private boolean isColorSelected;
+    private boolean isSizeSelected;
+     private Clipboard clpbrd;
+
+    public Chatting() {
+        initComponents();
+//Font labelFont=new Font();
+       // Format formatDialog = new Format(this, rootPaneCheckingEnabled);
+        l1.addMouseListener(new MyLabel1Listener());
+        l2.addMouseListener(new MyLabel1Listener());
+        l3.addMouseListener(new MyLabel1Listener());
+        l4.addMouseListener(new MyLabel1Listener());
+        l5.addMouseListener(new MyLabel1Listener());
+        l6.addMouseListener(new MyLabel1Listener());
+        l7.addMouseListener(new MyLabel1Listener());
+        l8.addMouseListener(new MyLabel1Listener());
+        l9.addMouseListener(new MyLabel1Listener());
+        this.addComponentListener(new MyJframeListener());
+        fontSize.setVisible(false);
+        fontTypes.setVisible(false);
+      //  jLabel4.setVisible(false);
+        jTextArea2.setLineWrap(true);
+        colors.addItem("red");
+        colors.addItem("blue");
+        colors.addItem("green");
+        colors.addItem("black");
+        
+      //    jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/1421879799_user-red.png"))); // NOI18N
+        //label
+      // ImageIcon  pictures1 = new ImageIcon("/Images/1421879799_user-red.png");
+        //        jLabel1.setIcon(pictures1);
+          //      System.out.println("picture 1 should be displayed here");
+        //jTextArea1.setlin
+
+        //Font list
+      /*  String[] availFonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
+         fonts = new JComboBox(availFonts);
+         fonts.setPreferredSize(new Dimension(150, 25));
+         fonts.setRenderer(new FontComboBox());
+         fonts.addPopupMenuListener(myListener);
+    
+     * fonts.addActionListener(myListener);*/
+        
+      
+         //Font list
+          //MyListener myListener = new MyListener();
+      /*  String[] availFonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
+        jComboBox1 = new JComboBox(availFonts);
+        jComboBox1.setPreferredSize(new Dimension(150, 25));
+        jComboBox1.setRenderer(new FontComboBox());
+        jComboBox1.addPopupMenuListener(myListener);
+        jComboBox1.addActionListener(myListener);*/
+
+        //Color list
+      /*  String[] colorArray = {"Red", "Green", "Blue", "Other"};
+        colors = new JComboBox(colorArray);
+        colors.setPreferredSize(new Dimension(150, 25));
+        colors.addPopupMenuListener(myListener);
+        colors.addActionListener(myListener);
+        colors.setRenderer(new ColorComboBox());*/
+
+        //Size List
+      /*  String[] sizeArray = {"10", "20", "30", "40", "50", "60"};
+        jComboBox1 = new JComboBox(sizeArray);
+        jComboBox1.setPreferredSize(new Dimension(150, 25));
+        jComboBox1.addPopupMenuListener(myListener);
+        jComboBox1.addActionListener(myListener);
+        jComboBox1.setRenderer(new SizeComboBox());*/
+
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        jPanel8 = new javax.swing.JPanel();
+        fontSize = new javax.swing.JComboBox();
+        fontTypes = new javax.swing.JComboBox();
+        colors = new javax.swing.JComboBox();
+        jPanel9 = new javax.swing.JPanel();
+        emotionsButton = new javax.swing.JButton();
+        textButton = new javax.swing.JButton();
+        attachButton = new javax.swing.JButton();
+        jPanel6 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
+        jPanel7 = new javax.swing.JPanel();
+        sendButton = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel10 = new javax.swing.JPanel();
+        jPanel11 = new javax.swing.JPanel();
+        statusLabel = new javax.swing.JLabel();
+        friendNameStatus = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu3 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(88, 174, 182));
+        jPanel1.setLayout(new java.awt.BorderLayout());
+
+        jPanel2.setBackground(new java.awt.Color(88, 174, 182));
+        jPanel2.setPreferredSize(new java.awt.Dimension(419, 180));
+
+        jPanel5.setBackground(new java.awt.Color(88, 174, 182));
+        jPanel5.setPreferredSize(new java.awt.Dimension(419, 70));
+
+        jPanel8.setBackground(new java.awt.Color(88, 174, 182));
+        jPanel8.setPreferredSize(new java.awt.Dimension(0, 45));
+
+        fontSize.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        fontSize.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fontSizeActionPerformed(evt);
+            }
+        });
+
+        fontTypes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        fontTypes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fontTypesActionPerformed(evt);
+            }
+        });
+
+        colors.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(fontSize, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(fontTypes, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(colors, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(27, Short.MAX_VALUE))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(fontTypes, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
+                        .addComponent(colors, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fontSize)))
+        );
+
+        jPanel9.setBackground(new java.awt.Color(88, 174, 182));
+        jPanel9.setPreferredSize(new java.awt.Dimension(67, 45));
+
+        emotionsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/1421892192_emotion_smile.png"))); // NOI18N
+        emotionsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                emotionsButtonActionPerformed(evt);
+            }
+        });
+
+        textButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/1421893005_text-height-24.png"))); // NOI18N
+        textButton.setPreferredSize(new java.awt.Dimension(65, 41));
+        textButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textButtonActionPerformed(evt);
+            }
+        });
+
+        attachButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/1421890841_attach.png"))); // NOI18N
+        attachButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                attachButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(emotionsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addComponent(textButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(attachButton, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(emotionsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(attachButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(textButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 138, Short.MAX_VALUE))
+                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 534, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jPanel6.setBackground(new java.awt.Color(88, 174, 182));
+
+        jTextArea2.setColumns(20);
+        jTextArea2.setLineWrap(true);
+        jTextArea2.setRows(5);
+        jScrollPane2.setViewportView(jTextArea2);
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
+        );
+
+        jPanel7.setBackground(new java.awt.Color(88, 174, 182));
+
+        sendButton.setBackground(new java.awt.Color(88, 174, 172));
+        sendButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/1421893447_send-48.png")));
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(sendButton, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(sendButton, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(16, 16, 16)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 554, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40))
+        );
+
+        jPanel1.add(jPanel2, java.awt.BorderLayout.CENTER);
+
+        getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_END);
+
+        jPanel3.setBackground(new java.awt.Color(88, 174, 182));
+        jPanel3.setPreferredSize(new java.awt.Dimension(300, 50));
+
+        jPanel10.setBackground(new java.awt.Color(88, 174, 182));
+
+        jPanel11.setBackground(new java.awt.Color(88, 174, 182));
+
+        statusLabel.setBackground(new java.awt.Color(88, 174, 182));
+        statusLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/1421879731_user-red.png"))); // NOI18N
+        statusLabel.setFocusCycleRoot(true);
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(statusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(statusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        friendNameStatus.setBackground(new java.awt.Color(88, 174, 182));
+        friendNameStatus.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        friendNameStatus.setForeground(new java.awt.Color(255, 255, 255));
+        friendNameStatus.setText("Rania");
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(friendNameStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
+                .addContainerGap(394, Short.MAX_VALUE))
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(friendNameStatus, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanel3, java.awt.BorderLayout.PAGE_START);
+
+        jPanel4.setBackground(new java.awt.Color(88, 174, 182));
+        jPanel4.setPreferredSize(new java.awt.Dimension(530, 250));
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 554, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanel4, java.awt.BorderLayout.CENTER);
+
+        jMenuBar2.setBackground(new java.awt.Color(39, 117, 172));
+
+        jMenu3.setText("File");
+        jMenuBar2.add(jMenu3);
+
+        jMenu4.setText("Edit");
+        jMenuBar2.add(jMenu4);
+
+        setJMenuBar(jMenuBar2);
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void fontSizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fontSizeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fontSizeActionPerformed
+
+    private void fontTypesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fontTypesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fontTypesActionPerformed
+
+    private void textButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textButtonActionPerformed
+        // TODO add your handling code here:
+        formatFlag++;
+        if ((formatFlag % 2) != 0) {
+            fontSize.setVisible(true);
+
+            fontTypes.setVisible(true);
+         //   jLabel4.setVisible(true);
+        } else if ((formatFlag % 2) == 0) {
+            fontSize.setVisible(false);
+
+            fontTypes.setVisible(false);
+           // jLabel4.setVisible(false);
+        }
+    }//GEN-LAST:event_textButtonActionPerformed
+
+    private void attachButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_attachButtonActionPerformed
+        // TODO add your handling code here:
+
+        JFileChooser jf = new JFileChooser();
+        jf.setVisible(true);
+        FileDialog fd = new FileDialog(Chatting.this, "Select a file", FileDialog.LOAD);
+        fd.setVisible(true);
+    }//GEN-LAST:event_attachButtonActionPerformed
+
+    private void emotionsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emotionsButtonActionPerformed
+        // TODO add your handling code here:
+
+        emotionsFlag++;
+
+        jw.setLocationRelativeTo(null);
+        jw.setLocation(10, 250);
+        jw.setSize(200, 150);
+        jp.setBorder(BorderFactory.createLineBorder(Color.black));
+        jp.setSize(200, 150);
+        jw.setBackground(Color.WHITE);
+        jw.add(jp);
+        jp.add(l1);
+        jp.add(l2);
+        jp.add(l3);
+        jp.add(l4);
+        jp.add(l5);
+        jp.add(l6);
+        jp.add(l7);
+        jp.add(l8);
+        jp.add(l9);
+
+        l1.setFont(new Font("Serif", Font.PLAIN, 20));
+        l2.setFont(new Font("Serif", Font.PLAIN, 20));
+        l3.setFont(new Font("Serif", Font.PLAIN, 20));
+        l4.setFont(new Font("Serif", Font.PLAIN, 20));
+        l5.setFont(new Font("Serif", Font.PLAIN, 20));
+        l6.setFont(new Font("Serif", Font.PLAIN, 20));
+        l7.setFont(new Font("Serif", Font.PLAIN, 20));
+        l8.setFont(new Font("Serif", Font.PLAIN, 20));
+        l9.setFont(new Font("Serif", Font.PLAIN, 20));
+        l1.setText("☺");
+        l2.setText("☹");
+        l3.setText("♡");
+        l4.setText("❤");
+        l5.setText("❁");
+        l6.setText("✌");
+        l7.setText("☃");
+        l8.setText("☂");
+        l9.setText("٩◔̯◔۶");
+        jp.setBackground(Color.white);
+
+        jp.setLayout(new GridLayout(2, 8));
+        if ((emotionsFlag % 2) != 0) {
+            jw.show(true);
+        } else if ((emotionsFlag % 2) == 0) {
+            jw.show(false);
+        }
+    }//GEN-LAST:event_emotionsButtonActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Chatting.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Chatting.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Chatting.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Chatting.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Chatting().setVisible(true);
+            }
+        });
+    }
+
+    class MyJframeListener implements ComponentListener {
+
+        @Override
+        public void componentResized(ComponentEvent e) {
+            //throw new UnsupportedOperationException("Not supported yet.");
+            int jframHeight1;
+            Component c = e.getComponent();
+
+            System.out.println("componentResized event from " + c.getClass().getName() + "; new size: "
+                    + c.getSize().width + ", " + c.getSize().height);
+
+            jframHeight1 = c.getSize().height;
+
+            int positionY = Math.abs(jframHeight - jframHeight1);
+            jw.setLocation(10, Math.abs(300 - positionY));
+            jw.setLocationByPlatform(true);
+
+        }
+
+        @Override
+        public void componentMoved(ComponentEvent e) {
+            //throw new UnsupportedOperationException("Not supported yet.");
+            Component c = e.getComponent();
+            System.out.println("componentMoved event from " + c.getClass().getName()
+                    + "; new location: " + c.getLocation().x + ", " + c.getLocation().y);
+            jw.setLocation(10 + (c.getLocation().x), 250 + (c.getLocation().y));
+        }
+
+        @Override
+        public void componentShown(ComponentEvent e) {
+            // throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        @Override
+        public void componentHidden(ComponentEvent e) {
+            // throw new UnsupportedOperationException("Not supported yet.");
+        }
+    }
+
+    class MycolorListener extends MouseAdapter {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            // throw new UnsupportedOperationException("Not supported yet.");
+        }
+    }
+
+    class MyLabel1Listener extends MouseAdapter {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            // throw new UnsupportedOperationException("Not supported yet.");
+            String str ;
+            if(e.getSource().equals(l1))
+            {
+             str = l1.getText();
+             jTextArea2.append(str);
+            //   jTextArea1.setText(str);
+        
+            //System.out.println(str);
+            }
+            else if(e.getSource().equals(l2))
+            {
+                 str = l2.getText();
+                 jTextArea2.append(str);
+            }
+            else if(e.getSource().equals(l3))
+            {
+                 str = l3.getText();
+                 jTextArea2.append(str);
+            }
+            else if(e.getSource().equals(l4))
+            {
+                 str = l4.getText();
+                 jTextArea2.append(str);
+            }
+            else if(e.getSource().equals(l5))
+            {
+                  str = l5.getText();
+                  jTextArea2.append(str);
+            }
+            else if(e.getSource().equals(l6))
+            {
+                  str = l6.getText();
+                  jTextArea2.append(str);
+            }
+            else if(e.getSource().equals(l7))
+            {
+                 str = l7.getText();
+                 jTextArea2.append(str);
+            }
+            else if(e.getSource().equals(l8))
+            {
+                 str = l8.getText();
+                    jTextArea2.append(str);
+            }
+            else if(e.getSource().equals(l9))
+            {
+                 str = l9.getText();
+                    jTextArea2.append(str);
+            }
+               
+        }
+      
+    }
+
+   /* class MyLabel2Listener extends MouseAdapter {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            // throw new UnsupportedOperationException("Not supported yet.");
+            String str = l2.getText();
+            //   jTextArea1.setText(str);
+            jTextArea2.append(str);
+            System.out.println(str);
+        }
+    }
+
+    class MyLabel3Listener extends MouseAdapter {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            // throw new UnsupportedOperationException("Not supported yet.");
+            String str = l3.getText();
+            //   jTextArea1.setText(str);
+            jTextArea2.append(str);
+            System.out.println(str);
+        }
+    }*/
+
+   /* class MyLabel4Listener extends MouseAdapter {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            // throw new UnsupportedOperationException("Not supported yet.");
+            String str = l4.getText();
+            //   jTextArea1.setText(str);
+            jTextArea2.append(str);
+            System.out.println(str);
+        }
+    }
+
+    class MyLabel5Listener extends MouseAdapter {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            // throw new UnsupportedOperationException("Not supported yet.");
+            String str = l5.getText();
+            //   jTextArea1.setText(str);
+            jTextArea2.append(str);
+            System.out.println(str);
+        }
+    }
+
+    class MyLabel6Listener extends MouseAdapter {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            // throw new UnsupportedOperationException("Not supported yet.");
+            String str = l6.getText();
+            //   jTextArea1.setText(str);
+            jTextArea2.append(str);
+            System.out.println(str);
+        }
+    }
+
+    class MyLabel7Listener extends MouseAdapter {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            // throw new UnsupportedOperationException("Not supported yet.");
+            String str = l7.getText();
+            //   jTextArea1.setText(str);
+            jTextArea2.append(str);
+            System.out.println(str);
+        }
+    }
+
+    class MyLabel8Listener extends MouseAdapter {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            // throw new UnsupportedOperationException("Not supported yet.");
+            String str = l8.getText();
+            //   jTextArea1.setText(str);
+            jTextArea2.append(str);
+            System.out.println(str);
+        }
+    }
+
+    class MyLabel9Listener extends MouseAdapter {
+
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            // throw new UnsupportedOperationException("Not supported yet.");
+            String str = l9.getText();
+            //   jTextArea1.setText(str);
+            jTextArea2.append(str);
+            System.out.println(str);
+        }
+    }*/
+    
+    
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton attachButton;
+    private javax.swing.JComboBox colors;
+    private javax.swing.JButton emotionsButton;
+    private javax.swing.JComboBox fontSize;
+    private javax.swing.JComboBox fontTypes;
+    private javax.swing.JLabel friendNameStatus;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JButton sendButton;
+    private javax.swing.JLabel statusLabel;
+    private javax.swing.JButton textButton;
+    // End of variables declaration//GEN-END:variables
+
+
+
+    /*class MyListener implements ActionListener, PopupMenuListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+           /* if (e.getSource().equals(copy)) {
+
+                copyText();
+
+            } else if (e.getSource().equals(cut)) {
+
+                cutText();
+
+            } else if (e.getSource().equals(paste)) {
+
+                pastText();
+
+            } else if (e.getSource().equals(delete)) {
+
+                deleteText();
+
+             if (e.getSource().equals(fonts)) {
+
+                isFontSelected = true;
+
+            } else if (e.getSource().equals(colors)) {
+
+                isColorSelected = true;
+
+            } else if (e.getSource().equals(sizes)) {
+
+                isSizeSelected = true;
+
+            }
+
+        }
+
+        @Override
+        public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
+
+        }
+
+        @Override
+        public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
+
+            if (e.getSource().equals(jComboBox2)) {
+
+                if (isFontSelected) {
+
+                    jTextArea2.setFont(new Font(jComboBox2.getSelectedItem().toString(), Font.PLAIN, formatDialog.getTextSize()));
+                    formatDialog.setTextFont(jComboBox2.getSelectedItem().toString());
+
+                } else {
+
+                    jTextArea2.setFont(new Font(formatDialog.getTextFont(), Font.PLAIN, formatDialog.getTextSize()));
+                }
+
+            } /*else if (e.getSource().equals(colors)) {
+
+                if (isColorSelected) {
+
+                    switch ((String) colors.getSelectedItem()) {
+
+                        case "Red":
+                            editorArea.setForeground(Color.RED);
+                            formatDialog.setTextColor(Color.RED);
+                            break;
+
+                        case "Green":
+                            editorArea.setForeground(Color.GREEN);
+                            formatDialog.setTextColor(Color.GREEN);
+                            break;
+
+                        case "Blue":
+                            editorArea.setForeground(Color.BLUE);
+                            formatDialog.setTextColor(Color.BLUE);
+                            break;
+
+                        case "Other":
+
+                            new Thread(new Runnable() {
+
+                        @Override
+                        public void run() {
+                            
+                            Color color = JColorChooser.showDialog(MainScreen.this, "Choose Color", Color.yellow);
+                            
+                            if(color != null){
+                                editorArea.setForeground(color);
+                                formatDialog.setTextColor(color);
+                            }
+                        }
+                    }).start();
+
+                            break;
+
+                    }*/
+
+                 /*else {
+
+                    editorArea.setForeground(formatDialog.getTextColor());
+                }*/
+
+           /*  else if (e.getSource().equals(jComboBox1)) {
+
+                if (isSizeSelected) {
+
+                    jTextArea2.setFont(new Font(formatDialog.getTextFont(), Font.PLAIN, Integer.parseInt(sizes.getSelectedItem().toString())));
+                    formatDialog.setTextSize(Integer.parseInt(jComboBox1.getSelectedItem().toString()));
+
+                } else {
+
+                    jTextArea2.setFont(new Font(formatDialog.getTextFont(), Font.PLAIN, formatDialog.getTextSize()));
+                }
+
+            }
+
+        }
+
+        @Override
+        public void popupMenuCanceled(PopupMenuEvent e) {
+
+        }
+
+    }
+
+    class ColorComboBox implements ListCellRenderer<Object> {
+
+        @Override
+        public Component getListCellRendererComponent(JList<? extends Object> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+
+            JLabel label = new JLabel();
+            label.setText("  " + value.toString());
+            label.setOpaque(true);
+            //label.setFont(new Font("DejaVu Sans", Font.PLAIN, 17));
+
+            if (isSelected || cellHasFocus) {
+                switch (value.toString()) {
+
+                    case "Red":
+                        label.setBackground(Color.RED);
+                        editorArea.setForeground(Color.RED);
+                        break;
+                    case "Green":
+                        label.setBackground(Color.GREEN);
+                        editorArea.setForeground(Color.GREEN);
+                        break;
+                    case "Blue":
+                        label.setBackground(Color.BLUE);
+                        editorArea.setForeground(Color.BLUE);
+                        break;
+                    default:
+                        label.setBackground(Color.darkGray);
+                }
+            }
+
+            return label;
+        }
+
+    }
+
+    class FontComboBox implements ListCellRenderer<Object> {
+
+        @Override
+        public Component getListCellRendererComponent(JList<? extends Object> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+
+            JLabel label = new JLabel();
+            label.setText("  " + value.toString());
+            label.setOpaque(true);
+            boolean focus;
+
+            if (isSelected) {
+
+                editorArea.setFont(new Font(value.toString(), Font.PLAIN, formatDialog.getTextSize()));
+                label.setBackground(Color.darkGray);
+
+            }
+
+            return label;
+        }
+
+    }
+
+    class SizeComboBox implements ListCellRenderer<Object> {
+
+        @Override
+        public Component getListCellRendererComponent(JList<? extends Object> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+
+            JLabel label = new JLabel();
+            label.setText("  " + value.toString());
+            label.setOpaque(true);
+            boolean focus;
+
+            if (isSelected) {
+
+                editorArea.setFont(new Font(formatDialog.getTextFont(), Font.PLAIN, Integer.parseInt(value.toString())));
+                label.setBackground(Color.darkGray);
+
+            }
+
+            return label;
+        }
+
+    }*/
+
+}
