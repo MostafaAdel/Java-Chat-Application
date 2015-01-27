@@ -56,15 +56,15 @@ public class Chatting extends javax.swing.JFrame {
     private JLabel l7 = new JLabel();
     private JLabel l8 = new JLabel();
     private JLabel l9 = new JLabel();
-     private boolean isFontSelected;
+    private boolean isFontSelected;
     private boolean isColorSelected;
     private boolean isSizeSelected;
-     private Clipboard clpbrd;
+    private Clipboard clpbrd;
 
     public Chatting() {
         initComponents();
 //Font labelFont=new Font();
-       // Format formatDialog = new Format(this, rootPaneCheckingEnabled);
+        // Format formatDialog = new Format(this, rootPaneCheckingEnabled);
         l1.addMouseListener(new MyLabel1Listener());
         l2.addMouseListener(new MyLabel1Listener());
         l3.addMouseListener(new MyLabel1Listener());
@@ -77,20 +77,19 @@ public class Chatting extends javax.swing.JFrame {
         this.addComponentListener(new MyJframeListener());
         fontSize.setVisible(false);
         fontTypes.setVisible(false);
-      //  jLabel4.setVisible(false);
+        //  jLabel4.setVisible(false);
         jTextArea2.setLineWrap(true);
         colors.addItem("red");
         colors.addItem("blue");
         colors.addItem("green");
         colors.addItem("black");
-        
+
       //    jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/1421879799_user-red.png"))); // NOI18N
         //label
-      // ImageIcon  pictures1 = new ImageIcon("/Images/1421879799_user-red.png");
+        // ImageIcon  pictures1 = new ImageIcon("/Images/1421879799_user-red.png");
         //        jLabel1.setIcon(pictures1);
-          //      System.out.println("picture 1 should be displayed here");
+        //      System.out.println("picture 1 should be displayed here");
         //jTextArea1.setlin
-
         //Font list
       /*  String[] availFonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
          fonts = new JComboBox(availFonts);
@@ -98,34 +97,29 @@ public class Chatting extends javax.swing.JFrame {
          fonts.setRenderer(new FontComboBox());
          fonts.addPopupMenuListener(myListener);
     
-     * fonts.addActionListener(myListener);*/
-        
-      
+         * fonts.addActionListener(myListener);*/
          //Font list
-          //MyListener myListener = new MyListener();
+        //MyListener myListener = new MyListener();
       /*  String[] availFonts = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
-        jComboBox1 = new JComboBox(availFonts);
-        jComboBox1.setPreferredSize(new Dimension(150, 25));
-        jComboBox1.setRenderer(new FontComboBox());
-        jComboBox1.addPopupMenuListener(myListener);
-        jComboBox1.addActionListener(myListener);*/
-
+         jComboBox1 = new JComboBox(availFonts);
+         jComboBox1.setPreferredSize(new Dimension(150, 25));
+         jComboBox1.setRenderer(new FontComboBox());
+         jComboBox1.addPopupMenuListener(myListener);
+         jComboBox1.addActionListener(myListener);*/
         //Color list
       /*  String[] colorArray = {"Red", "Green", "Blue", "Other"};
-        colors = new JComboBox(colorArray);
-        colors.setPreferredSize(new Dimension(150, 25));
-        colors.addPopupMenuListener(myListener);
-        colors.addActionListener(myListener);
-        colors.setRenderer(new ColorComboBox());*/
-
+         colors = new JComboBox(colorArray);
+         colors.setPreferredSize(new Dimension(150, 25));
+         colors.addPopupMenuListener(myListener);
+         colors.addActionListener(myListener);
+         colors.setRenderer(new ColorComboBox());*/
         //Size List
       /*  String[] sizeArray = {"10", "20", "30", "40", "50", "60"};
-        jComboBox1 = new JComboBox(sizeArray);
-        jComboBox1.setPreferredSize(new Dimension(150, 25));
-        jComboBox1.addPopupMenuListener(myListener);
-        jComboBox1.addActionListener(myListener);
-        jComboBox1.setRenderer(new SizeComboBox());*/
-
+         jComboBox1 = new JComboBox(sizeArray);
+         jComboBox1.setPreferredSize(new Dimension(150, 25));
+         jComboBox1.addPopupMenuListener(myListener);
+         jComboBox1.addActionListener(myListener);
+         jComboBox1.setRenderer(new SizeComboBox());*/
     }
 
     /**
@@ -469,12 +463,12 @@ public class Chatting extends javax.swing.JFrame {
             fontSize.setVisible(true);
 
             fontTypes.setVisible(true);
-         //   jLabel4.setVisible(true);
+            //   jLabel4.setVisible(true);
         } else if ((formatFlag % 2) == 0) {
             fontSize.setVisible(false);
 
             fontTypes.setVisible(false);
-           // jLabel4.setVisible(false);
+            // jLabel4.setVisible(false);
         }
     }//GEN-LAST:event_textButtonActionPerformed
 
@@ -625,157 +619,139 @@ public class Chatting extends javax.swing.JFrame {
         @Override
         public void mouseClicked(MouseEvent e) {
             // throw new UnsupportedOperationException("Not supported yet.");
-            String str ;
-            if(e.getSource().equals(l1))
-            {
-             str = l1.getText();
-             jTextArea2.append(str);
+            String str;
+            if (e.getSource().equals(l1)) {
+                str = l1.getText();
+                jTextArea2.append(str);
             //   jTextArea1.setText(str);
-        
-            //System.out.println(str);
+
+                //System.out.println(str);
+            } else if (e.getSource().equals(l2)) {
+                str = l2.getText();
+                jTextArea2.append(str);
+            } else if (e.getSource().equals(l3)) {
+                str = l3.getText();
+                jTextArea2.append(str);
+            } else if (e.getSource().equals(l4)) {
+                str = l4.getText();
+                jTextArea2.append(str);
+            } else if (e.getSource().equals(l5)) {
+                str = l5.getText();
+                jTextArea2.append(str);
+            } else if (e.getSource().equals(l6)) {
+                str = l6.getText();
+                jTextArea2.append(str);
+            } else if (e.getSource().equals(l7)) {
+                str = l7.getText();
+                jTextArea2.append(str);
+            } else if (e.getSource().equals(l8)) {
+                str = l8.getText();
+                jTextArea2.append(str);
+            } else if (e.getSource().equals(l9)) {
+                str = l9.getText();
+                jTextArea2.append(str);
             }
-            else if(e.getSource().equals(l2))
-            {
-                 str = l2.getText();
-                 jTextArea2.append(str);
-            }
-            else if(e.getSource().equals(l3))
-            {
-                 str = l3.getText();
-                 jTextArea2.append(str);
-            }
-            else if(e.getSource().equals(l4))
-            {
-                 str = l4.getText();
-                 jTextArea2.append(str);
-            }
-            else if(e.getSource().equals(l5))
-            {
-                  str = l5.getText();
-                  jTextArea2.append(str);
-            }
-            else if(e.getSource().equals(l6))
-            {
-                  str = l6.getText();
-                  jTextArea2.append(str);
-            }
-            else if(e.getSource().equals(l7))
-            {
-                 str = l7.getText();
-                 jTextArea2.append(str);
-            }
-            else if(e.getSource().equals(l8))
-            {
-                 str = l8.getText();
-                    jTextArea2.append(str);
-            }
-            else if(e.getSource().equals(l9))
-            {
-                 str = l9.getText();
-                    jTextArea2.append(str);
-            }
-               
+
         }
-      
+
     }
 
-   /* class MyLabel2Listener extends MouseAdapter {
+    /* class MyLabel2Listener extends MouseAdapter {
 
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            // throw new UnsupportedOperationException("Not supported yet.");
-            String str = l2.getText();
-            //   jTextArea1.setText(str);
-            jTextArea2.append(str);
-            System.out.println(str);
-        }
-    }
+     @Override
+     public void mouseClicked(MouseEvent e) {
+     // throw new UnsupportedOperationException("Not supported yet.");
+     String str = l2.getText();
+     //   jTextArea1.setText(str);
+     jTextArea2.append(str);
+     System.out.println(str);
+     }
+     }
 
-    class MyLabel3Listener extends MouseAdapter {
+     class MyLabel3Listener extends MouseAdapter {
 
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            // throw new UnsupportedOperationException("Not supported yet.");
-            String str = l3.getText();
-            //   jTextArea1.setText(str);
-            jTextArea2.append(str);
-            System.out.println(str);
-        }
-    }*/
+     @Override
+     public void mouseClicked(MouseEvent e) {
+     // throw new UnsupportedOperationException("Not supported yet.");
+     String str = l3.getText();
+     //   jTextArea1.setText(str);
+     jTextArea2.append(str);
+     System.out.println(str);
+     }
+     }*/
 
-   /* class MyLabel4Listener extends MouseAdapter {
+    /* class MyLabel4Listener extends MouseAdapter {
 
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            // throw new UnsupportedOperationException("Not supported yet.");
-            String str = l4.getText();
-            //   jTextArea1.setText(str);
-            jTextArea2.append(str);
-            System.out.println(str);
-        }
-    }
+     @Override
+     public void mouseClicked(MouseEvent e) {
+     // throw new UnsupportedOperationException("Not supported yet.");
+     String str = l4.getText();
+     //   jTextArea1.setText(str);
+     jTextArea2.append(str);
+     System.out.println(str);
+     }
+     }
 
-    class MyLabel5Listener extends MouseAdapter {
+     class MyLabel5Listener extends MouseAdapter {
 
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            // throw new UnsupportedOperationException("Not supported yet.");
-            String str = l5.getText();
-            //   jTextArea1.setText(str);
-            jTextArea2.append(str);
-            System.out.println(str);
-        }
-    }
+     @Override
+     public void mouseClicked(MouseEvent e) {
+     // throw new UnsupportedOperationException("Not supported yet.");
+     String str = l5.getText();
+     //   jTextArea1.setText(str);
+     jTextArea2.append(str);
+     System.out.println(str);
+     }
+     }
 
-    class MyLabel6Listener extends MouseAdapter {
+     class MyLabel6Listener extends MouseAdapter {
 
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            // throw new UnsupportedOperationException("Not supported yet.");
-            String str = l6.getText();
-            //   jTextArea1.setText(str);
-            jTextArea2.append(str);
-            System.out.println(str);
-        }
-    }
+     @Override
+     public void mouseClicked(MouseEvent e) {
+     // throw new UnsupportedOperationException("Not supported yet.");
+     String str = l6.getText();
+     //   jTextArea1.setText(str);
+     jTextArea2.append(str);
+     System.out.println(str);
+     }
+     }
 
-    class MyLabel7Listener extends MouseAdapter {
+     class MyLabel7Listener extends MouseAdapter {
 
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            // throw new UnsupportedOperationException("Not supported yet.");
-            String str = l7.getText();
-            //   jTextArea1.setText(str);
-            jTextArea2.append(str);
-            System.out.println(str);
-        }
-    }
+     @Override
+     public void mouseClicked(MouseEvent e) {
+     // throw new UnsupportedOperationException("Not supported yet.");
+     String str = l7.getText();
+     //   jTextArea1.setText(str);
+     jTextArea2.append(str);
+     System.out.println(str);
+     }
+     }
 
-    class MyLabel8Listener extends MouseAdapter {
+     class MyLabel8Listener extends MouseAdapter {
 
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            // throw new UnsupportedOperationException("Not supported yet.");
-            String str = l8.getText();
-            //   jTextArea1.setText(str);
-            jTextArea2.append(str);
-            System.out.println(str);
-        }
-    }
+     @Override
+     public void mouseClicked(MouseEvent e) {
+     // throw new UnsupportedOperationException("Not supported yet.");
+     String str = l8.getText();
+     //   jTextArea1.setText(str);
+     jTextArea2.append(str);
+     System.out.println(str);
+     }
+     }
 
-    class MyLabel9Listener extends MouseAdapter {
+     class MyLabel9Listener extends MouseAdapter {
 
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            // throw new UnsupportedOperationException("Not supported yet.");
-            String str = l9.getText();
-            //   jTextArea1.setText(str);
-            jTextArea2.append(str);
-            System.out.println(str);
-        }
-    }*/
-    
-    
+     @Override
+     public void mouseClicked(MouseEvent e) {
+     // throw new UnsupportedOperationException("Not supported yet.");
+     String str = l9.getText();
+     //   jTextArea1.setText(str);
+     jTextArea2.append(str);
+     System.out.println(str);
+     }
+     }*/
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton attachButton;
     private javax.swing.JComboBox colors;
@@ -806,211 +782,208 @@ public class Chatting extends javax.swing.JFrame {
     private javax.swing.JButton textButton;
     // End of variables declaration//GEN-END:variables
 
-
-
     /*class MyListener implements ActionListener, PopupMenuListener {
 
-        @Override
-        public void actionPerformed(ActionEvent e) {
+     @Override
+     public void actionPerformed(ActionEvent e) {
 
-           /* if (e.getSource().equals(copy)) {
+     /* if (e.getSource().equals(copy)) {
 
-                copyText();
+     copyText();
 
-            } else if (e.getSource().equals(cut)) {
+     } else if (e.getSource().equals(cut)) {
 
-                cutText();
+     cutText();
 
-            } else if (e.getSource().equals(paste)) {
+     } else if (e.getSource().equals(paste)) {
 
-                pastText();
+     pastText();
 
-            } else if (e.getSource().equals(delete)) {
+     } else if (e.getSource().equals(delete)) {
 
-                deleteText();
+     deleteText();
 
-             if (e.getSource().equals(fonts)) {
+     if (e.getSource().equals(fonts)) {
 
-                isFontSelected = true;
+     isFontSelected = true;
 
-            } else if (e.getSource().equals(colors)) {
+     } else if (e.getSource().equals(colors)) {
 
-                isColorSelected = true;
+     isColorSelected = true;
 
-            } else if (e.getSource().equals(sizes)) {
+     } else if (e.getSource().equals(sizes)) {
 
-                isSizeSelected = true;
+     isSizeSelected = true;
 
-            }
+     }
 
-        }
+     }
 
-        @Override
-        public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
+     @Override
+     public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
 
-        }
+     }
 
-        @Override
-        public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
+     @Override
+     public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
 
-            if (e.getSource().equals(jComboBox2)) {
+     if (e.getSource().equals(jComboBox2)) {
 
-                if (isFontSelected) {
+     if (isFontSelected) {
 
-                    jTextArea2.setFont(new Font(jComboBox2.getSelectedItem().toString(), Font.PLAIN, formatDialog.getTextSize()));
-                    formatDialog.setTextFont(jComboBox2.getSelectedItem().toString());
+     jTextArea2.setFont(new Font(jComboBox2.getSelectedItem().toString(), Font.PLAIN, formatDialog.getTextSize()));
+     formatDialog.setTextFont(jComboBox2.getSelectedItem().toString());
 
-                } else {
+     } else {
 
-                    jTextArea2.setFont(new Font(formatDialog.getTextFont(), Font.PLAIN, formatDialog.getTextSize()));
-                }
+     jTextArea2.setFont(new Font(formatDialog.getTextFont(), Font.PLAIN, formatDialog.getTextSize()));
+     }
 
-            } /*else if (e.getSource().equals(colors)) {
+     } /*else if (e.getSource().equals(colors)) {
 
-                if (isColorSelected) {
+     if (isColorSelected) {
 
-                    switch ((String) colors.getSelectedItem()) {
+     switch ((String) colors.getSelectedItem()) {
 
-                        case "Red":
-                            editorArea.setForeground(Color.RED);
-                            formatDialog.setTextColor(Color.RED);
-                            break;
+     case "Red":
+     editorArea.setForeground(Color.RED);
+     formatDialog.setTextColor(Color.RED);
+     break;
 
-                        case "Green":
-                            editorArea.setForeground(Color.GREEN);
-                            formatDialog.setTextColor(Color.GREEN);
-                            break;
+     case "Green":
+     editorArea.setForeground(Color.GREEN);
+     formatDialog.setTextColor(Color.GREEN);
+     break;
 
-                        case "Blue":
-                            editorArea.setForeground(Color.BLUE);
-                            formatDialog.setTextColor(Color.BLUE);
-                            break;
+     case "Blue":
+     editorArea.setForeground(Color.BLUE);
+     formatDialog.setTextColor(Color.BLUE);
+     break;
 
-                        case "Other":
+     case "Other":
 
-                            new Thread(new Runnable() {
+     new Thread(new Runnable() {
 
-                        @Override
-                        public void run() {
+     @Override
+     public void run() {
                             
-                            Color color = JColorChooser.showDialog(MainScreen.this, "Choose Color", Color.yellow);
+     Color color = JColorChooser.showDialog(MainScreen.this, "Choose Color", Color.yellow);
                             
-                            if(color != null){
-                                editorArea.setForeground(color);
-                                formatDialog.setTextColor(color);
-                            }
-                        }
-                    }).start();
+     if(color != null){
+     editorArea.setForeground(color);
+     formatDialog.setTextColor(color);
+     }
+     }
+     }).start();
 
-                            break;
+     break;
 
-                    }*/
+     }*/
 
-                 /*else {
+    /*else {
 
-                    editorArea.setForeground(formatDialog.getTextColor());
-                }*/
+     editorArea.setForeground(formatDialog.getTextColor());
+     }*/
 
-           /*  else if (e.getSource().equals(jComboBox1)) {
+    /*  else if (e.getSource().equals(jComboBox1)) {
 
-                if (isSizeSelected) {
+     if (isSizeSelected) {
 
-                    jTextArea2.setFont(new Font(formatDialog.getTextFont(), Font.PLAIN, Integer.parseInt(sizes.getSelectedItem().toString())));
-                    formatDialog.setTextSize(Integer.parseInt(jComboBox1.getSelectedItem().toString()));
+     jTextArea2.setFont(new Font(formatDialog.getTextFont(), Font.PLAIN, Integer.parseInt(sizes.getSelectedItem().toString())));
+     formatDialog.setTextSize(Integer.parseInt(jComboBox1.getSelectedItem().toString()));
 
-                } else {
+     } else {
 
-                    jTextArea2.setFont(new Font(formatDialog.getTextFont(), Font.PLAIN, formatDialog.getTextSize()));
-                }
+     jTextArea2.setFont(new Font(formatDialog.getTextFont(), Font.PLAIN, formatDialog.getTextSize()));
+     }
 
-            }
+     }
 
-        }
+     }
 
-        @Override
-        public void popupMenuCanceled(PopupMenuEvent e) {
+     @Override
+     public void popupMenuCanceled(PopupMenuEvent e) {
 
-        }
+     }
 
-    }
+     }
 
-    class ColorComboBox implements ListCellRenderer<Object> {
+     class ColorComboBox implements ListCellRenderer<Object> {
 
-        @Override
-        public Component getListCellRendererComponent(JList<? extends Object> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+     @Override
+     public Component getListCellRendererComponent(JList<? extends Object> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
 
-            JLabel label = new JLabel();
-            label.setText("  " + value.toString());
-            label.setOpaque(true);
-            //label.setFont(new Font("DejaVu Sans", Font.PLAIN, 17));
+     JLabel label = new JLabel();
+     label.setText("  " + value.toString());
+     label.setOpaque(true);
+     //label.setFont(new Font("DejaVu Sans", Font.PLAIN, 17));
 
-            if (isSelected || cellHasFocus) {
-                switch (value.toString()) {
+     if (isSelected || cellHasFocus) {
+     switch (value.toString()) {
 
-                    case "Red":
-                        label.setBackground(Color.RED);
-                        editorArea.setForeground(Color.RED);
-                        break;
-                    case "Green":
-                        label.setBackground(Color.GREEN);
-                        editorArea.setForeground(Color.GREEN);
-                        break;
-                    case "Blue":
-                        label.setBackground(Color.BLUE);
-                        editorArea.setForeground(Color.BLUE);
-                        break;
-                    default:
-                        label.setBackground(Color.darkGray);
-                }
-            }
+     case "Red":
+     label.setBackground(Color.RED);
+     editorArea.setForeground(Color.RED);
+     break;
+     case "Green":
+     label.setBackground(Color.GREEN);
+     editorArea.setForeground(Color.GREEN);
+     break;
+     case "Blue":
+     label.setBackground(Color.BLUE);
+     editorArea.setForeground(Color.BLUE);
+     break;
+     default:
+     label.setBackground(Color.darkGray);
+     }
+     }
 
-            return label;
-        }
+     return label;
+     }
 
-    }
+     }
 
-    class FontComboBox implements ListCellRenderer<Object> {
+     class FontComboBox implements ListCellRenderer<Object> {
 
-        @Override
-        public Component getListCellRendererComponent(JList<? extends Object> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+     @Override
+     public Component getListCellRendererComponent(JList<? extends Object> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
 
-            JLabel label = new JLabel();
-            label.setText("  " + value.toString());
-            label.setOpaque(true);
-            boolean focus;
+     JLabel label = new JLabel();
+     label.setText("  " + value.toString());
+     label.setOpaque(true);
+     boolean focus;
 
-            if (isSelected) {
+     if (isSelected) {
 
-                editorArea.setFont(new Font(value.toString(), Font.PLAIN, formatDialog.getTextSize()));
-                label.setBackground(Color.darkGray);
+     editorArea.setFont(new Font(value.toString(), Font.PLAIN, formatDialog.getTextSize()));
+     label.setBackground(Color.darkGray);
 
-            }
+     }
 
-            return label;
-        }
+     return label;
+     }
 
-    }
+     }
 
-    class SizeComboBox implements ListCellRenderer<Object> {
+     class SizeComboBox implements ListCellRenderer<Object> {
 
-        @Override
-        public Component getListCellRendererComponent(JList<? extends Object> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+     @Override
+     public Component getListCellRendererComponent(JList<? extends Object> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
 
-            JLabel label = new JLabel();
-            label.setText("  " + value.toString());
-            label.setOpaque(true);
-            boolean focus;
+     JLabel label = new JLabel();
+     label.setText("  " + value.toString());
+     label.setOpaque(true);
+     boolean focus;
 
-            if (isSelected) {
+     if (isSelected) {
 
-                editorArea.setFont(new Font(formatDialog.getTextFont(), Font.PLAIN, Integer.parseInt(value.toString())));
-                label.setBackground(Color.darkGray);
+     editorArea.setFont(new Font(formatDialog.getTextFont(), Font.PLAIN, Integer.parseInt(value.toString())));
+     label.setBackground(Color.darkGray);
 
-            }
+     }
 
-            return label;
-        }
+     return label;
+     }
 
-    }*/
-
+     }*/
 }
