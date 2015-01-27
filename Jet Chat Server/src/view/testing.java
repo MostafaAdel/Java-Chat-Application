@@ -7,9 +7,11 @@ package view;
 
 import ServerController.UserProfileController;
 import controller.ClientAuthenticationController;
+import controller.UserProfileServices;
 import entity.UserEntity;
-import controller.*;
+import java.rmi.RemoteException;
 
+import controller.*;
 /**
  *
  * @author Mostafa_ITI
