@@ -159,7 +159,7 @@ public class Chatting extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(88, 174, 182));
         jPanel1.setLayout(new java.awt.BorderLayout());
@@ -418,6 +418,7 @@ public class Chatting extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(88, 174, 182));
         jPanel4.setPreferredSize(new java.awt.Dimension(530, 250));
 
+        jTextArea1.setEditable(false);
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
@@ -562,7 +563,7 @@ public class Chatting extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Chatting().setVisible(true);
+            //    new Chatting().setVisible(true);
             }
         });
     }

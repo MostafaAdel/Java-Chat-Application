@@ -10,20 +10,43 @@ import views.renderers.StatusComboBoxRenderer;
 import com.seaglasslookandfeel.SeaGlassLookAndFeel;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.Toolkit;
+import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileView;
 import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 
 /**
  *
  * @author Mohamed
  */
+class myPhotofilter extends FileFilter {
+    
+    @Override
+    public boolean accept(File f) {
+        if (f.getName().toLowerCase().endsWith("jpg") || f.getName().toLowerCase().endsWith("gif") || f.isDirectory()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
+    @Override
+    public String getDescription() {
+        return "JPGE,GIF Images";
+    }
+}
+
 public class FriendListScreen extends javax.swing.JFrame {
 
     /**
@@ -31,21 +54,21 @@ public class FriendListScreen extends javax.swing.JFrame {
      */
     public FriendListScreen() {
         initComponents();
-
+        
         setVisible(true);
         
         try {
             //Set look and feel
             UIManager.setLookAndFeel(new NimbusLookAndFeel());
             SwingUtilities.updateComponentTreeUI(this);
-
+            
         } catch (UnsupportedLookAndFeelException ex) {
             Logger.getLogger(FriendListScreen.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         //freind list
         friendList.setModel(new DefaultListModel());
-        String[] names = {"Ahmed", "Mohamed", "Ali", "Mona", "tata7", "mostafa", "Rania", "Mai", "sa3ed","yyyy", "fff"};
+        String[] names = {"Ahmed", "Mohamed", "Ali", "Mona", "tata7", "mostafa", "Rania", "Mai", "sa3ed", "yyyy", "fff"};
         friendList.setListData(names);
         friendList.setCellRenderer(new FriendListRenderer());
 
@@ -55,7 +78,7 @@ public class FriendListScreen extends javax.swing.JFrame {
         status.addItem("Invisible");
         status.addItem("Drinking Coffee");
         status.setRenderer(new StatusComboBoxRenderer());
-
+        
     }
 
     /**
@@ -80,6 +103,11 @@ public class FriendListScreen extends javax.swing.JFrame {
         addFriendButton = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         header = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -97,6 +125,9 @@ public class FriendListScreen extends javax.swing.JFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 photoMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                photoMousePressed(evt);
             }
         });
 
@@ -216,6 +247,9 @@ public class FriendListScreen extends javax.swing.JFrame {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 addFriendButtonMouseExited(evt);
             }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                addFriendButtonMousePressed(evt);
+            }
         });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
@@ -272,6 +306,21 @@ public class FriendListScreen extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 60));
 
+        jMenu1.setText("File");
+
+        jMenuItem1.setText("Sign Out");
+        jMenu1.add(jMenuItem1);
+
+        jMenuItem2.setText("Exit");
+        jMenu1.add(jMenuItem2);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -280,13 +329,14 @@ public class FriendListScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_statusActionPerformed
 
     private void friendListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_friendListValueChanged
-        // TODO add your handling code here:
+        Chatting chat = new Chatting();
+        chat.setVisible(true);// TODO add your handling code here:
 
 
     }//GEN-LAST:event_friendListValueChanged
 
     private void search_boxFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_search_boxFocusGained
-
+        
         if (search_box.getText().equals("   Search friend")) {
             search_box.setText("   ");
             search_box.setForeground(Color.BLACK);
@@ -294,12 +344,12 @@ public class FriendListScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_search_boxFocusGained
 
     private void search_boxMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_search_boxMouseEntered
-
+        
         search_box.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 153, 0), 2));
     }//GEN-LAST:event_search_boxMouseEntered
 
     private void search_boxFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_search_boxFocusLost
-
+        
         if (search_box.getText().length() <= 3) {
             search_box.setText("   Search friend");
             search_box.setForeground(Color.gray);
@@ -331,13 +381,12 @@ public class FriendListScreen extends javax.swing.JFrame {
     private void addFriendButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addFriendButtonMouseEntered
         addFriendButton.setIcon(new ImageIcon(getClass().getResource("/img/add_friend_focused.png")));
         
-        
-        
+
     }//GEN-LAST:event_addFriendButtonMouseEntered
 
     private void addFriendButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addFriendButtonMouseExited
         addFriendButton.setIcon(new ImageIcon(getClass().getResource("/img/add_friend.png")));
-        
+
     }//GEN-LAST:event_addFriendButtonMouseExited
 
     private void statusMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_statusMouseEntered
@@ -347,6 +396,20 @@ public class FriendListScreen extends javax.swing.JFrame {
     private void statusMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_statusMouseExited
         status.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 255, 255)));
     }//GEN-LAST:event_statusMouseExited
+
+    private void addFriendButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addFriendButtonMousePressed
+        AddFriend addfriend = new AddFriend();
+        addfriend.setVisible(true);
+    }//GEN-LAST:event_addFriendButtonMousePressed
+
+    private void photoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_photoMousePressed
+        JFileChooser jfc = new JFileChooser();
+        jfc.setFileFilter(new myPhotofilter());
+        int jfcOption = jfc.showOpenDialog(jfc);
+        if (jfcOption == JFileChooser.APPROVE_OPTION) {
+            String imgpath = jfc.getSelectedFile().toString();
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_photoMousePressed
 
     /**
      * @param args the command line arguments
@@ -389,6 +452,11 @@ public class FriendListScreen extends javax.swing.JFrame {
     private javax.swing.JList friendList;
     private javax.swing.JLabel header;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
