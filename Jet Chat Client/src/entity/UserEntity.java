@@ -6,7 +6,6 @@
 package entity;
 
 import java.awt.Image;
-import java.util.Hashtable;
 import javax.swing.ImageIcon;
 
 /**

@@ -5,9 +5,6 @@
  */
 package view;
 
-import ServerController.UserProfileController;
-import controller.ClientAuthenticationController;
-import controller.UserProfileServices;
 import entity.UserEntity;
 import java.rmi.RemoteException;
 
@@ -19,10 +16,10 @@ import controller.*;
 public class testing {
 
     public static void main(String[] args) {
-        UserEntity user = new UserEntity();
-        ClientAuthenticationController client = new ClientAuthenticationController();
-        UserProfileController x = new UserProfileController();
-        x.senduserModeToOnlineUsers("May");
+       // UserEntity user = new UserEntity();
+      //ClientAuthenticationController client = new ClientAuthenticationController();
+      //  UserProfileController x = new UserProfileController();
+       // x.senduserModeToOnlineUsers("May");
          //client.signUp();
 //         client.singIN("mostafa90", "12345");
 //         user = client.userViewData("gaber92");
@@ -45,7 +42,6 @@ public class testing {
 //         System.out.println(user.getGender());
 //         System.out.println(user.getDateOfBirth());
        /*  user.setUsername("gaber92");
-=======
          //client.singIN("mostafa90", "12345");
          //user = client.userViewData("gaber92");
         
@@ -53,16 +49,6 @@ public class testing {
          System.out.println(user.getLastName());
          System.out.println(user.getGender());
          System.out.println(user.getDateOfBirth());
-        /* user.setUsername("gaber92");
->>>>>>> origin/master
-         user.setUserPassword("12345");
-         user.setFirstName("Mohamed");
-         user.setLastName("Gaber");
-         user.setGender('M');
-         user.setMobileNumber("101020324");
-         user.setMode(1);
-         client.singUp(user);*/
-         FreindshipController freind=new FreindshipController(); 
-         freind.addFreind("rania", "may");
+        /* user.setUsername("gaber92"); */
     }
 }

@@ -8,64 +8,74 @@ package controller;
 import java.util.Vector;
 import db.com.DB_Connection;
 import entity.*;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import services.FreindshipServiceInterface;
 
 /**
  *
  * @author Rania
  */
-public class FreindshipController implements FreindshipControllerInterface {
+public class FreindshipController extends UnicastRemoteObject implements FreindshipServiceInterface, FreindshipControllerInterface {
 
     private ServerController serverController;
-    
-    
-    
-     FreindshipController(ServerController controller) {
+    static final int ADD_FRIEND = 1;
+    static final int ACCEPT_INVITATION = 2;
+    static final int IGNORE_INVITATION = 3;
+
+    FreindshipController(ServerController controller) throws RemoteException {
 
         this.serverController = controller;
     }
 
-    public FreindshipController() {
+    public FreindshipController() throws RemoteException {
 
     }
 
-    
-
+    /**
+     * @param String userName
+     * @param String freindName
+     */
     @Override
-    public boolean addFreind(String userName, String friendName) {
+    public boolean addFreind(String userName, String friendName) throws RemoteException{
 
         String userNameTemp;
         String friendNameTemp;
         friendshipEntity friendship = new friendshipEntity();
         try {
             ResultSet result;
-           // ResultSet result1;
-            result = DB_Connection.selectQuery("SELECT * FROM FRIENDSHIP WHERE USERNAME = '" + userName + "' AND USE_USERNAME='" + friendName + "' OR USERNAME = '" + friendName + "' AND USE_USERNAME='" + userName + " ' ");
-            
-            while (result.next()) {
 
-                userNameTemp = result.getString(1);
-                friendNameTemp = result.getString(2);
-                if (((userNameTemp == userName) & (friendNameTemp == friendName)) || (((userNameTemp == friendName) & (friendNameTemp == userName) ))) {
-                    System.out.println("you aready friend");
-                    break;
-                    // return true ;
-                } /*else if ((userNameTemp == friendName) & (friendNameTemp == userName)) {
-                    System.out.println("you aready friend");
-                    break;
-                } */
-             //   if ()
-                else {
+            result = DB_Connection.selectQuery("SELECT * FROM FRIENDSHIP WHERE (USERNAME = '" + userName + "' AND USE_USERNAME='" + friendName + "') OR (USERNAME = '" + friendName + "' AND USE_USERNAME='" + userName + " ')"
+                    + " ");
+            System.out.println("cghjk");
+          //  System.out.println(result.getString(2));
+            if (result.wasNull()) {
 
-                    //  DB_Connection.updateQuery("UPDATE friendship SET friendshipStatus=1 WHERE USERNAME='" + userName + "'&USE_USERNAME='" + friendName + "'  ");
-                    DB_Connection.updateQuery("INSERT INTO friendship (USERNAME, USER_USERNAME, friendshipStatus)VALUES "
-                            + "('" + userName + "','" + friendName + "','1')");
+                while (result.next()) {
+
+                    userNameTemp = result.getString(1);
+                    friendNameTemp = result.getString(2);
+                    System.out.println(result.getString(1));
+                    if (((userNameTemp.equals(userName)) & (friendNameTemp.equals(friendName)) || (((userNameTemp.equals(friendName)) & (friendNameTemp.equals(userName)))))) {
+                        System.out.println("you aready friend");
+                        break;
+
+                    }
+                  else {
+
+                DB_Connection.updateQuery("INSERT INTO friendship (USERNAME, USE_USERNAME, friendshipStatus)VALUES "
+                        + "('" + userName + "','" + friendName + "','"+FreindshipController.ADD_FRIEND+"')");
+            }
                 }
-                // return true ;
+            } else {
+
+                DB_Connection.updateQuery("INSERT INTO friendship (USERNAME, USE_USERNAME, friendshipStatus)VALUES "
+                        + "('" + userName + "','" + friendName + "','"+FreindshipController.ADD_FRIEND+"')");
             }
 
         } catch (SQLException ex) {
@@ -78,8 +88,12 @@ public class FreindshipController implements FreindshipControllerInterface {
 
     }
 
+    /**
+     * @param String userName
+     * @param String freindName
+     */
     @Override
-    public UserEntity acceptInvitation(String userName, String friendName) {
+    public UserEntity acceptInvitation(String userName, String friendName)throws RemoteException {
 
         String userNameTemp;
         String friendNameTemp;
@@ -88,17 +102,18 @@ public class FreindshipController implements FreindshipControllerInterface {
 
         try {
             ResultSet result;
-            result = DB_Connection.selectQuery("SELECT * FROM FREINDSHIP WHERE USERNAME = '" + userName + "' AND USE_USERNAME='" + friendName + "' AND friendshipStatus <> '2'  ");
+            result = DB_Connection.selectQuery("SELECT * FROM FRIENDSHIP WHERE (USERNAME = '" + userName + "' AND USE_USERNAME='" + friendName + "' AND friendshipStatus <> '"+FreindshipController.ADD_FRIEND+"')  ");
 
             while (result.next()) {
 
                 userNameTemp = result.getString(1);
                 friendNameTemp = result.getString(2);
                 friendshipStatusTemp = result.getInt(3);
-                if (((userNameTemp == userName) & (friendNameTemp == friendName) & (friendshipStatusTemp != 2))  ) {
-                    DB_Connection.updateQuery("UPDATE friendship SET friendshipStatus=1 WHERE USERNAME='" + userName + "', USE_USERNAME='" + friendName + "'  ");
-                    result = DB_Connection.selectQuery("SELECT * FROM USER WHERE USERNAME ='" + friendName +"' ");
+                if (((userNameTemp.equals(userName)) & (friendNameTemp.equals(friendName)) & (friendshipStatusTemp != FreindshipController.ACCEPT_INVITATION))) {
 
+                    DB_Connection.updateQuery("UPDATE friendship SET friendshipStatus='"+FreindshipController.ACCEPT_INVITATION+"' WHERE USERNAME='" + userName + "' AND USE_USERNAME='" + friendName + "'  ");
+                    result = DB_Connection.selectQuery("SELECT * FROM USER WHERE USERNAME ='" + friendName + "' ");
+                    result.next();
                     user.setUsername(result.getString("USERNAME"));
                     user.setFirstName((result.getString("FIRSTNAME")));
                     user.setLastName(result.getString("LASTNAME"));
@@ -106,29 +121,9 @@ public class FreindshipController implements FreindshipControllerInterface {
                     user.setMode(result.getInt("MODE"));
                     user.setStatus(result.getBoolean("STATUS"));
                     user.setGender(result.getString("GENDER").charAt(0));
-                    // user.setImageProfile(result.getBinaryStream(""));
                     return user;
 
-                } /*else if ((userNameTemp == userName) & (friendNameTemp == friendName) & (friendshipStatusTemp == 2)) {
-                    System.out.println("you aready friend");
-                    break;
-                } else if ((userNameTemp == friendName) & (friendNameTemp == userName) & (friendshipStatusTemp == 2)) {
-                    System.out.println("you aready friend");
-                    break;
-                } else if ((userNameTemp == friendName) & (friendNameTemp == userName) & (friendshipStatusTemp == 1)) {
-                    System.out.println("you aready friend");
-                    break;
-                } else if ((userNameTemp == friendName) & (friendNameTemp == userName) & (friendshipStatusTemp == 3)) {
-                    System.out.println("you aready friend");
-                    break;
-                }*/
-                /* else if((userNameTemp == friendName) & (friendNameTemp == userName)&(friendshipStatusTemp==4))
-                 {
-                 System.out.println("you aready friend");
-                 break;
-                 }*/
-
-                // return true ;
+                }
             }
 
         } catch (SQLException ex) {
@@ -141,8 +136,12 @@ public class FreindshipController implements FreindshipControllerInterface {
 
     }
 
+    /**
+     * @param String userName
+     * @param String freindName
+     */
     @Override
-    public boolean ignoreInvitation(String userName, String friendName) {
+    public boolean ignoreInvitation(String userName, String friendName) throws RemoteException{
 
         String userNameTemp;
         String friendNameTemp;
@@ -151,75 +150,35 @@ public class FreindshipController implements FreindshipControllerInterface {
 
         try {
             ResultSet result;
-            result = DB_Connection.selectQuery("SELECT * FROM FREINDSHIP WHERE USERNAME = '" + userName + "' AND USE_USERNAME='" + friendName + "' AND friendshipStatus NOT IN(2,3) ");
+            result = DB_Connection.selectQuery("SELECT * FROM FRIENDSHIP WHERE USERNAME = '" + userName + "' AND USE_USERNAME='" + friendName + "' AND friendshipStatus NOT IN(2,3) ");
 
-             while (result.next()) {
-            userNameTemp = result.getString(1);
-            friendNameTemp = result.getString(2);
-            friendshipStatusTemp = result.getInt(3);
-            if ((userNameTemp == userName) & (friendNameTemp == friendName)) {
-                DB_Connection.updateQuery("UPDATE friendship SET friendshipStatus=3 WHERE USERNAME='" + userName + "'&USE_USERNAME='" + friendName + "'  ");
-                break ;
+            while (result.next()) {
+                userNameTemp = result.getString(1);
+                friendNameTemp = result.getString(2);
+                friendshipStatusTemp = result.getInt(3);
+
+                if ((userNameTemp.equals(userName)) & (friendNameTemp.equals(friendName))) {
+                    DB_Connection.updateQuery("UPDATE friendship SET friendshipStatus='"+FreindshipController.IGNORE_INVITATION+"' WHERE USERNAME='" + userName + "' AND USE_USERNAME='" + friendName + "'  ");
+                    break;
+                }
+
             }
-          /*  else if((userNameTemp == userName) & (friendNameTemp == friendName) & (friendshipStatusTemp == 3))
-            {
-                System.out.println("you already ignore him");
-                
-            }
-            else if((userNameTemp == friendName) & (friendNameTemp == userName) & (friendshipStatusTemp == 3))
-            {
-                System.out.println("you send him invite");
-                
-            }*/
-            
-             }
-              } catch (SQLException ex) {
+        } catch (SQLException ex) {
 
             ex.printStackTrace();
-            return false ;
-          
-        }
-        return true;
-        }
+            return false;
 
-
-        @Override
-        public boolean rejectInvitation  (String userName, String friendName)
-        {
-        
-        
-         
-         String userNameTemp;
-        String friendNameTemp;
-        int friendshipStatusTemp;
-        UserEntity user = new UserEntity();
-
-        try {
-            ResultSet result;
-            result = DB_Connection.selectQuery("SELECT * FROM FREINDSHIP WHERE USERNAME = '" + userName + "'&USE_USERNAME='" + friendName + "' ");
-
-             while (result.next()) {
-            userNameTemp = result.getString(1);
-            friendNameTemp = result.getString(2);
-            friendshipStatusTemp = result.getInt(3);
-            if ((userNameTemp == userName) & (friendNameTemp == friendName) & (friendshipStatusTemp != 2)) {
-                DB_Connection.updateQuery("DELETE FROM  friendship  WHERE USERNAME='" + userName + "',USE_USERNAME='" + friendName + "'  ");
-
-            }
-            
-             }
-              } catch (SQLException ex) {
-
-            ex.printStackTrace();
-            return false ;
-          
         }
         return true;
     }
 
+    /**
+     * @param String userName
+     * @param String freindName
+     */
     @Override
-        public boolean deleteFreind (String userName, String friendName)
-        {
+    public boolean rejectInvitation(String userName, String friendName) throws RemoteException{
+
         String userNameTemp;
         String friendNameTemp;
         int friendshipStatusTemp;
@@ -227,32 +186,63 @@ public class FreindshipController implements FreindshipControllerInterface {
 
         try {
             ResultSet result;
-            result = DB_Connection.selectQuery("SELECT * FROM FREINDSHIP WHERE USERNAME = '" + userName + "'&USE_USERNAME='" + friendName + "' OR USERNAME = '" + friendName + "' AND USE_USERNAME='" + userName + "' AND freindshipStatus='2' ");
+            result = DB_Connection.selectQuery("SELECT * FROM FRIENDSHIP WHERE USERNAME = '" + userName + "' AND USE_USERNAME='" + friendName + "' ");
 
-             while (result.next()) {
-            userNameTemp = result.getString(1);
-            friendNameTemp = result.getString(2);
-            friendshipStatusTemp = result.getInt(3);
-            if ((userNameTemp == userName) & (friendNameTemp == friendName) & (friendshipStatusTemp == 2)) {
-                DB_Connection.updateQuery("DELETE FROM  friendship  WHERE USERNAME='" + userName + "',USE_USERNAME='" + friendName + "'  ");
+            while (result.next()) {
+                userNameTemp = result.getString(1);
+                friendNameTemp = result.getString(2);
+                friendshipStatusTemp = result.getInt(3);
+                if ((userNameTemp.equals(userName)) & (friendNameTemp.equals(friendName)) & (friendshipStatusTemp != ACCEPT_INVITATION)) {
+                    DB_Connection.updateQuery("DELETE FROM  friendship  WHERE USERNAME='" + userName + "' AND USE_USERNAME='" + friendName + "'  ");
+
+                }
 
             }
-            else if((userNameTemp == friendName) & (friendNameTemp == userName) & (friendshipStatusTemp == 2))
-            {
-                 DB_Connection.updateQuery("DELETE FROM  friendship  WHERE USERNAME='" + friendName + "',USE_USERNAME='" + userName + "'  ");
+        } catch (SQLException ex) {
+
+            ex.printStackTrace();
+            return false;
+
+        }
+        return true;
+    }
+
+    /**
+     * @param String userName
+     * @param String freindName
+     */
+    @Override
+    public boolean deleteFreind(String userName, String friendName) throws RemoteException{
+        String userNameTemp;
+        String friendNameTemp;
+        int friendshipStatusTemp;
+        UserEntity user = new UserEntity();
+
+        try {
+            ResultSet result;
+            result = DB_Connection.selectQuery("SELECT * FROM FRIENDSHIP WHERE (USERNAME = '" + userName + "'AND USE_USERNAME='" + friendName + "') OR( USERNAME = '" + friendName + "' AND USE_USERNAME='" + userName + "') AND friendshipStatus='"+FreindshipController.ACCEPT_INVITATION+"' ");
+
+            while (result.next()) {
+                userNameTemp = result.getString(1);
+                friendNameTemp = result.getString(2);
+                friendshipStatusTemp = result.getInt(3);
+                if ((userNameTemp.equals(userName)) & (friendNameTemp.equals(friendName)) & (friendshipStatusTemp == ACCEPT_INVITATION)) {
+                    DB_Connection.updateQuery("DELETE FROM  friendship  WHERE USERNAME='" + userName + "'AND USE_USERNAME='" + friendName + "'  ");
+
+                } else if ((userNameTemp.equals(friendName)) & (friendNameTemp.equals(userName)) & (friendshipStatusTemp == ACCEPT_INVITATION)) {
+                    DB_Connection.updateQuery("DELETE FROM  friendship  WHERE USERNAME='" + friendName + "' AND USE_USERNAME='" + userName + "'  ");
+                }
+
             }
-            
-            }
-              } catch (SQLException ex) {
+        } catch (SQLException ex) {
 
             ex.printStackTrace();
             System.out.println("you are already not friend with him");
-            return false ;
-          
+            return false;
+
         }
-        
-         
-       return true;
+
+        return true;
     }
 
     /**
@@ -261,78 +251,70 @@ public class FreindshipController implements FreindshipControllerInterface {
      * @return
      */
     @Override
-        public Vector<UserEntity> getFreindList(String userName)
-        { 
-         UserEntity user = new UserEntity();
-        
-         Vector<UserEntity> friendList;
-      friendList = new Vector<UserEntity>();
-        try {
-            ResultSet result;
-            result = DB_Connection.selectQuery("SELECT * FROM FREINDSHIP ,FREIND WHERE USERNAME = '" + userName + "' | USE_USERNAME='" + userName + "' & friendshipStatus= '2 '");
-         
-           while(result.next()) 
-           {
-               
-                    user.setUsername(result.getString("USERNAME"));
-                    user.setFirstName((result.getString("FIRSTNAME")));
-                    user.setLastName(result.getString("LASTNAME"));
-                    user.setDateOfBirth(result.getString("DATEOFBIRTH"));
-                    user.setMode(result.getInt("MODE"));
-                    user.setStatus(result.getBoolean("STATUS"));
-                    user.setGender(result.getString("GENDER").charAt(0));
-                    friendList.add(user);
-           }
-           
-           
-        
-        } catch (SQLException ex) {
-
-            ex.printStackTrace();
-    }
-        return friendList ;
-        }
-
-    /**
-     *
-     * @param userName
-     * @return
-     */
-    @Override
-        public Vector<UserEntity> getFreindRequest(String userName)
-        { 
-        
-        
-    
+    public Vector<UserEntity> getFreindList(String userName)throws RemoteException {
         UserEntity user = new UserEntity();
-        
-         Vector<UserEntity> friendRequest;
-      friendRequest = new Vector<UserEntity>();
+
+        Vector<UserEntity> friendList;
+        friendList = new Vector<UserEntity>();
         try {
             ResultSet result;
-            result = DB_Connection.selectQuery("SELECT * FROM FREINDSHIP WHERE  USE_USERNAME='" + userName + "' & friendshipStatus ='1' | friendshipStatus='3'");
-         
-           while(result.next()) 
-           {
-               
-                    user.setUsername(result.getString("USERNAME"));
-                    user.setFirstName((result.getString("FIRSTNAME")));
-                    user.setLastName(result.getString("LASTNAME"));
-                    user.setDateOfBirth(result.getString("DATEOFBIRTH"));
-                    user.setMode(result.getInt("MODE"));
-                    user.setStatus(result.getBoolean("STATUS"));
-                    user.setGender(result.getString("GENDER").charAt(0));
-                    friendRequest.add(user);
-           }
-           
-           
-        
+            result = DB_Connection.selectQuery("SELECT * FROM FRIENDSHIP ,FREIND WHERE( USERNAME = '" + userName + "' OR USE_USERNAME='" + userName + "') & friendshipStatus= '"+FreindshipController.ACCEPT_INVITATION+"'");
+
+            while (result.next()) {
+
+                user.setUsername(result.getString("USERNAME"));
+                user.setFirstName((result.getString("FIRSTNAME")));
+                user.setLastName(result.getString("LASTNAME"));
+                user.setDateOfBirth(result.getString("DATEOFBIRTH"));
+                user.setMode(result.getInt("MODE"));
+                user.setStatus(result.getBoolean("STATUS"));
+                user.setGender(result.getString("GENDER").charAt(0));
+                friendList.add(user);
+
+            }
+
         } catch (SQLException ex) {
 
             ex.printStackTrace();
-    }
-        return friendRequest ;
+            return null;
         }
+        return friendList;
+    }
 
+    /**
+     *
+     * @param userName
+     * @return
+     */
+    @Override
+    public Vector<UserEntity> getFreindRequest(String userName) throws RemoteException{
+
+        UserEntity user = new UserEntity();
+
+        Vector<UserEntity> friendRequest;
+        friendRequest = new Vector<UserEntity>();
+        try {
+            ResultSet result;
+            result = DB_Connection.selectQuery("SELECT * FROM FREINDSHIP WHERE  USE_USERNAME='" + userName + "' AND (friendshipStatus ='"+FreindshipController.ADD_FRIEND+"' OR friendshipStatus='"+FreindshipController.IGNORE_INVITATION+"' ')");
+
+            while (result.next()) {
+
+                user.setUsername(result.getString("USERNAME"));
+                user.setFirstName((result.getString("FIRSTNAME")));
+                user.setLastName(result.getString("LASTNAME"));
+                user.setDateOfBirth(result.getString("DATEOFBIRTH"));
+                user.setMode(result.getInt("MODE"));
+                user.setStatus(result.getBoolean("STATUS"));
+                user.setGender(result.getString("GENDER").charAt(0));
+                friendRequest.add(user);
+            }
+
+        } catch (SQLException ex) {
+
+            ex.printStackTrace();
+            return null;
+        }
+        return friendRequest;
+    }
 
 }
