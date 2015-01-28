@@ -6,9 +6,8 @@
 
 package controller;
 
-import entity.UserEntity;
+import callbacks.ClientCallbackInterface;
 import java.rmi.RemoteException;
-import java.rmi.server.RemoteObject;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.*;
 import services.ChatServiceInterface;
@@ -26,19 +25,19 @@ public class ChatController extends UnicastRemoteObject implements ChatControlle
    }
 
     @Override
-    public RemoteObject getFriendRemoteObject(String friendName) throws RemoteException {
+    public ClientCallbackInterface getFriendRemoteObject(String friendName) throws RemoteException {
         
         return serverController.getUserRemoteObject(friendName);
     }
 
     @Override
-    public Vector<RemoteObject> getGroupRemoteObjects(Vector<String> groupUsers) throws RemoteException {
+    public Vector<ClientCallbackInterface> getGroupRemoteObjects(Vector<String> groupUsers) throws RemoteException {
         
-        Vector<RemoteObject> group = new Vector<>();
+        Vector<ClientCallbackInterface> group = new Vector<>();
         
         for(String username : groupUsers){
             
-            RemoteObject userRemoteObject = serverController.getUserRemoteObject(username);
+            ClientCallbackInterface userRemoteObject = serverController.getUserRemoteObject(username);
             group.addElement(userRemoteObject);
         }
             

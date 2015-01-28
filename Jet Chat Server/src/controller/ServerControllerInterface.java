@@ -6,6 +6,7 @@
 
 package controller;
 
+import callbacks.ClientCallbackInterface;
 import datatypes.Advertisement;
 import java.util.*;
 import java.rmi.server.RemoteObject;
@@ -43,7 +44,7 @@ public interface ServerControllerInterface {
    /** @param String username
     * get remote object for specific username from allUsersRemoteObejcts Hashtable
     */
-   RemoteObject getUserRemoteObject(String username);
+   ClientCallbackInterface getUserRemoteObject(String username);
    
    /** @param String username 
     * @param RemoteObejct remoteObject
@@ -55,6 +56,6 @@ public interface ServerControllerInterface {
     * @param RemoteObejct remoteObject
     * insert remote obejct with username in allUsersRemoteObejcts Hashtable
     */
-   void insertUserRemoteObject(String username, RemoteObject remoteObject);
+   void insertUserRemoteObject(String username, ClientCallbackInterface remoteObject);
 
 }

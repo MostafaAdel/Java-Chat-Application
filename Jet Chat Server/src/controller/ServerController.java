@@ -6,6 +6,7 @@
 
 package controller;
 
+import callbacks.ClientCallbackInterface;
 import controller.ServerControllerInterface;
 import datatypes.Advertisement;
 import java.rmi.AccessException;
@@ -28,7 +29,7 @@ public class ServerController extends UnicastRemoteObject implements ServerContr
    private FreindshipControllerInterface friendshipController;
    private UserProfileControllerInterface userProfileController;
    private ChatControllerInterface chatController;
-   private Hashtable<String, RemoteObject> allUsersRemoteObjects;
+   private Hashtable<String, ClientCallbackInterface> allUsersRemoteObjects;
    private Registry registery;
    
     private ServerController() throws RemoteException{
@@ -82,7 +83,7 @@ public class ServerController extends UnicastRemoteObject implements ServerContr
     }
 
     @Override
-    public RemoteObject getUserRemoteObject(String username) {
+    public ClientCallbackInterface getUserRemoteObject(String username) {
         
         return allUsersRemoteObjects.get(username);
     }
@@ -94,7 +95,7 @@ public class ServerController extends UnicastRemoteObject implements ServerContr
     }
 
     @Override
-    public void insertUserRemoteObject(String username, RemoteObject remoteObject) {
+    public void insertUserRemoteObject(String username, ClientCallbackInterface remoteObject) {
         
         allUsersRemoteObjects.put(username, remoteObject);
     }
