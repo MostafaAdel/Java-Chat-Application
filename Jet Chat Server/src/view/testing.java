@@ -20,7 +20,7 @@ public class testing {
 
     public static void main(String[] args) {
         UserEntity user = new UserEntity();
-        ClientAuthenticationController client = new ClientAuthenticationController();
+      //ClientAuthenticationController client = new ClientAuthenticationController();
         UserProfileController x = new UserProfileController();
         x.senduserModeToOnlineUsers("May");
          //client.signUp();
@@ -62,7 +62,7 @@ public class testing {
          user.setMobileNumber("101020324");
          user.setMode(1);
          client.singUp(user);*/
-         FreindshipController freind=new FreindshipController(); 
-         freind.addFreind("rania", "may");
+        // FreindshipController freind=new FreindshipController(); 
+         //freind.addFreind("rania", "may");
     }
 }
