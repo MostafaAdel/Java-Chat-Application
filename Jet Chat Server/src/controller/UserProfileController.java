@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import services.ServerServicesInterface;
 
 /**
  *
@@ -132,6 +133,11 @@ public class UserProfileController extends UnicastRemoteObject implements UserPr
             return false;
         }
         }
+
+    @Override
+    public ServerServicesInterface getService(int serviceNumber) throws RemoteException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 
 }

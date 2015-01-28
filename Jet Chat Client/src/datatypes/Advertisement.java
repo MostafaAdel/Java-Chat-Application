@@ -7,11 +7,10 @@
 package datatypes;
 
 import java.awt.Image;
-import java.io.Serializable;
 import java.util.*;
 
 
-public class Advertisement implements Serializable{
+public class Advertisement {
 
    private String title;
    private Image image;

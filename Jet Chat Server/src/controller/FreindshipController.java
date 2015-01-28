@@ -16,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import services.FreindshipServiceInterface;
+import services.ServerServicesInterface;
 
 /**
  *
@@ -315,6 +316,11 @@ public class FreindshipController extends UnicastRemoteObject implements Freinds
             return null;
         }
         return friendRequest;
+    }
+
+    @Override
+    public ServerServicesInterface getService(int serviceNumber) throws RemoteException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

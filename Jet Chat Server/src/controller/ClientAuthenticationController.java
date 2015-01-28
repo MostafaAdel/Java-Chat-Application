@@ -137,4 +137,9 @@ public class ClientAuthenticationController extends UnicastRemoteObject implemen
         return false;
     }
 
+    @Override
+    public ServerServicesInterface getService(int serviceNumber) throws RemoteException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }
