@@ -43,7 +43,7 @@ public class FreindshipController extends UnicastRemoteObject implements Freinds
      * @param String freindName
      */
     @Override
-    public boolean addFreind(String userName, String friendName) throws RemoteException{
+    public boolean addFreind(String userName, String friendName) throws RemoteException {
 
         String userNameTemp;
         String friendNameTemp;
@@ -54,29 +54,21 @@ public class FreindshipController extends UnicastRemoteObject implements Freinds
             result = DB_Connection.selectQuery("SELECT * FROM FRIENDSHIP WHERE (USERNAME = '" + userName + "' AND USE_USERNAME='" + friendName + "') OR (USERNAME = '" + friendName + "' AND USE_USERNAME='" + userName + " ')"
                     + " ");
             System.out.println("cghjk");
-          //  System.out.println(result.getString(2));
-            if (result.wasNull()) {
-
-                while (result.next()) {
-
-                    userNameTemp = result.getString(1);
-                    friendNameTemp = result.getString(2);
-                    System.out.println(result.getString(1));
-                    if (((userNameTemp.equals(userName)) & (friendNameTemp.equals(friendName)) || (((userNameTemp.equals(friendName)) & (friendNameTemp.equals(userName)))))) {
-                        System.out.println("you aready friend");
-                        break;
-
-                    }
-                  else {
+            //  System.out.println(result.getString(2));
+            if (result.next() == false) {
 
                 DB_Connection.updateQuery("INSERT INTO friendship (USERNAME, USE_USERNAME, friendshipStatus)VALUES "
-                        + "('" + userName + "','" + friendName + "','"+FreindshipController.ADD_FRIEND+"')");
-            }
-                }
+                        + "('" + userName + "','" + friendName + "','" + FreindshipController.ADD_FRIEND + "')");
             } else {
 
-                DB_Connection.updateQuery("INSERT INTO friendship (USERNAME, USE_USERNAME, friendshipStatus)VALUES "
-                        + "('" + userName + "','" + friendName + "','"+FreindshipController.ADD_FRIEND+"')");
+                userNameTemp = result.getString(1);
+                friendNameTemp = result.getString(2);
+                System.out.println(result.getString(1));
+                if (((userNameTemp.equals(userName)) & (friendNameTemp.equals(friendName)) || (((userNameTemp.equals(friendName)) & (friendNameTemp.equals(userName)))))) {
+                    System.out.println("you aready friend");
+
+                }
+
             }
 
         } catch (SQLException ex) {
@@ -94,7 +86,7 @@ public class FreindshipController extends UnicastRemoteObject implements Freinds
      * @param String freindName
      */
     @Override
-    public UserEntity acceptInvitation(String userName, String friendName)throws RemoteException {
+    public UserEntity acceptInvitation(String userName, String friendName) throws RemoteException {
 
         String userNameTemp;
         String friendNameTemp;
@@ -103,7 +95,7 @@ public class FreindshipController extends UnicastRemoteObject implements Freinds
 
         try {
             ResultSet result;
-            result = DB_Connection.selectQuery("SELECT * FROM FRIENDSHIP WHERE (USERNAME = '" + userName + "' AND USE_USERNAME='" + friendName + "' AND friendshipStatus <> '"+FreindshipController.ADD_FRIEND+"')  ");
+            result = DB_Connection.selectQuery("SELECT * FROM FRIENDSHIP WHERE (USERNAME = '" + userName + "' AND USE_USERNAME='" + friendName + "' AND friendshipStatus <> '" + FreindshipController.ADD_FRIEND + "')  ");
 
             while (result.next()) {
 
@@ -112,7 +104,7 @@ public class FreindshipController extends UnicastRemoteObject implements Freinds
                 friendshipStatusTemp = result.getInt(3);
                 if (((userNameTemp.equals(userName)) & (friendNameTemp.equals(friendName)) & (friendshipStatusTemp != FreindshipController.ACCEPT_INVITATION))) {
 
-                    DB_Connection.updateQuery("UPDATE friendship SET friendshipStatus='"+FreindshipController.ACCEPT_INVITATION+"' WHERE USERNAME='" + userName + "' AND USE_USERNAME='" + friendName + "'  ");
+                    DB_Connection.updateQuery("UPDATE friendship SET friendshipStatus='" + FreindshipController.ACCEPT_INVITATION + "' WHERE USERNAME='" + userName + "' AND USE_USERNAME='" + friendName + "'  ");
                     result = DB_Connection.selectQuery("SELECT * FROM USER WHERE USERNAME ='" + friendName + "' ");
                     result.next();
                     user.setUsername(result.getString("USERNAME"));
@@ -142,7 +134,7 @@ public class FreindshipController extends UnicastRemoteObject implements Freinds
      * @param String freindName
      */
     @Override
-    public boolean ignoreInvitation(String userName, String friendName) throws RemoteException{
+    public boolean ignoreInvitation(String userName, String friendName) throws RemoteException {
 
         String userNameTemp;
         String friendNameTemp;
@@ -159,7 +151,7 @@ public class FreindshipController extends UnicastRemoteObject implements Freinds
                 friendshipStatusTemp = result.getInt(3);
 
                 if ((userNameTemp.equals(userName)) & (friendNameTemp.equals(friendName))) {
-                    DB_Connection.updateQuery("UPDATE friendship SET friendshipStatus='"+FreindshipController.IGNORE_INVITATION+"' WHERE USERNAME='" + userName + "' AND USE_USERNAME='" + friendName + "'  ");
+                    DB_Connection.updateQuery("UPDATE friendship SET friendshipStatus='" + FreindshipController.IGNORE_INVITATION + "' WHERE USERNAME='" + userName + "' AND USE_USERNAME='" + friendName + "'  ");
                     break;
                 }
 
@@ -178,7 +170,7 @@ public class FreindshipController extends UnicastRemoteObject implements Freinds
      * @param String freindName
      */
     @Override
-    public boolean rejectInvitation(String userName, String friendName) throws RemoteException{
+    public boolean rejectInvitation(String userName, String friendName) throws RemoteException {
 
         String userNameTemp;
         String friendNameTemp;
@@ -213,7 +205,7 @@ public class FreindshipController extends UnicastRemoteObject implements Freinds
      * @param String freindName
      */
     @Override
-    public boolean deleteFreind(String userName, String friendName) throws RemoteException{
+    public boolean deleteFreind(String userName, String friendName) throws RemoteException {
         String userNameTemp;
         String friendNameTemp;
         int friendshipStatusTemp;
@@ -221,7 +213,7 @@ public class FreindshipController extends UnicastRemoteObject implements Freinds
 
         try {
             ResultSet result;
-            result = DB_Connection.selectQuery("SELECT * FROM FRIENDSHIP WHERE (USERNAME = '" + userName + "'AND USE_USERNAME='" + friendName + "') OR( USERNAME = '" + friendName + "' AND USE_USERNAME='" + userName + "') AND friendshipStatus='"+FreindshipController.ACCEPT_INVITATION+"' ");
+            result = DB_Connection.selectQuery("SELECT * FROM FRIENDSHIP WHERE (USERNAME = '" + userName + "'AND USE_USERNAME='" + friendName + "') OR( USERNAME = '" + friendName + "' AND USE_USERNAME='" + userName + "') AND friendshipStatus='" + FreindshipController.ACCEPT_INVITATION + "' ");
 
             while (result.next()) {
                 userNameTemp = result.getString(1);
@@ -252,14 +244,14 @@ public class FreindshipController extends UnicastRemoteObject implements Freinds
      * @return
      */
     @Override
-    public Vector<UserEntity> getFreindList(String userName)throws RemoteException {
+    public Vector<UserEntity> getFreindList(String userName) throws RemoteException {
         UserEntity user = new UserEntity();
 
         Vector<UserEntity> friendList;
         friendList = new Vector<UserEntity>();
         try {
             ResultSet result;
-            result = DB_Connection.selectQuery("SELECT * FROM FRIENDSHIP ,FREIND WHERE( USERNAME = '" + userName + "' OR USE_USERNAME='" + userName + "') & friendshipStatus= '"+FreindshipController.ACCEPT_INVITATION+"'");
+            result = DB_Connection.selectQuery("SELECT * FROM FRIENDSHIP ,FREIND WHERE( USERNAME = '" + userName + "' OR USE_USERNAME='" + userName + "') & friendshipStatus= '" + FreindshipController.ACCEPT_INVITATION + "'");
 
             while (result.next()) {
 
@@ -288,7 +280,7 @@ public class FreindshipController extends UnicastRemoteObject implements Freinds
      * @return
      */
     @Override
-    public Vector<UserEntity> getFreindRequest(String userName) throws RemoteException{
+    public Vector<UserEntity> getFreindRequest(String userName) throws RemoteException {
 
         UserEntity user = new UserEntity();
 
@@ -296,7 +288,7 @@ public class FreindshipController extends UnicastRemoteObject implements Freinds
         friendRequest = new Vector<UserEntity>();
         try {
             ResultSet result;
-            result = DB_Connection.selectQuery("SELECT * FROM FREINDSHIP WHERE  USE_USERNAME='" + userName + "' AND (friendshipStatus ='"+FreindshipController.ADD_FRIEND+"' OR friendshipStatus='"+FreindshipController.IGNORE_INVITATION+"' ')");
+            result = DB_Connection.selectQuery("SELECT * FROM FREINDSHIP WHERE  USE_USERNAME='" + userName + "' AND (friendshipStatus ='" + FreindshipController.ADD_FRIEND + "' OR friendshipStatus='" + FreindshipController.IGNORE_INVITATION + "' ')");
 
             while (result.next()) {
 
