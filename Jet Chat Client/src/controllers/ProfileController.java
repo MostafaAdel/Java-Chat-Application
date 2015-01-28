@@ -6,6 +6,7 @@
 
 package controllers;
 
+import callbacks.ClientCallbackInterface;
 import callbacks.ProfileCallbackInterface;
 import java.awt.Image;
 import java.rmi.RemoteException;
@@ -79,6 +80,11 @@ public class ProfileController extends UnicastRemoteObject implements ProfileCon
     public boolean notifyFriendStatus(String friendName, int status) throws RemoteException {
         
         return false;
+    }
+
+    @Override
+    public ClientCallbackInterface getCallback(int callbackNumber) throws RemoteException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

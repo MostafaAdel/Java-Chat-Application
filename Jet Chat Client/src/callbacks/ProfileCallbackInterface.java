@@ -9,7 +9,7 @@ package callbacks;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
 
-public interface ProfileCallbackInterface extends Remote{
+public interface ProfileCallbackInterface extends ClientCallbackInterface{
 
     boolean notifyFriendMode(String friendName, int mode) throws RemoteException;
 
