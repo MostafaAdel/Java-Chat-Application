@@ -6,13 +6,14 @@
 package entity;
 
 import java.awt.Image;
+import java.io.Serializable;
 import javax.swing.ImageIcon;
 
 /**
  *
  * @author Mostafa_ITI
  */
-public class UserEntity {
+public class UserEntity implements Serializable{
 
     private String username;
     private String firstName;
