@@ -11,7 +11,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.RemoteObject;
 import java.util.*;
 
-public interface ChatServiceInterface extends Remote{
+public interface ChatServiceInterface extends ServerServicesInterface{
    
     /** @param String friendName
      * @return RemoteObject

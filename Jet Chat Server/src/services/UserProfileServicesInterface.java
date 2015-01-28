@@ -12,7 +12,7 @@ import java.rmi.RemoteException;
  *
  * @author May
  */
-public interface UserProfileServicesInterface extends Remote{
+public interface UserProfileServicesInterface extends ServerServicesInterface{
    static final int ONLINE_STATUS = 1;
    static final int OFFLINE_STATUS = 2;
    static final int AVIALBALE_MODE = 1;

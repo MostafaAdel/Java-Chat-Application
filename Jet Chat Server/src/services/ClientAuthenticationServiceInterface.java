@@ -13,7 +13,7 @@ import java.rmi.RemoteException;
  *
  * @author Mostafa_ITI
  */
-public interface ClientAuthenticationServiceInterface extends Remote{
+public interface ClientAuthenticationServiceInterface extends ServerServicesInterface{
    /** @param username 
     * @param password
     * @pdOid fab8b71e-0c5b-436a-a3a0-9c30af344535 */

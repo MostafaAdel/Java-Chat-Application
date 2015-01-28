@@ -14,7 +14,7 @@ import java.util.Vector;
  *
  * @author Rania
  */
-public interface FreindshipServiceInterface extends Remote {
+public interface FreindshipServiceInterface extends ServerServicesInterface {
     
      /**@param String userName
      * @param  String  freindName
