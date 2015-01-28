@@ -16,7 +16,7 @@ import controller.*;
 public class testing {
 
     public static void main(String[] args) {
-        UserEntity user = new UserEntity();
+       // UserEntity user = new UserEntity();
       //ClientAuthenticationController client = new ClientAuthenticationController();
       //  UserProfileController x = new UserProfileController();
        // x.senduserModeToOnlineUsers("May");
@@ -42,7 +42,6 @@ public class testing {
 //         System.out.println(user.getGender());
 //         System.out.println(user.getDateOfBirth());
        /*  user.setUsername("gaber92");
-=======
          //client.singIN("mostafa90", "12345");
          //user = client.userViewData("gaber92");
         
@@ -50,4 +49,6 @@ public class testing {
          System.out.println(user.getLastName());
          System.out.println(user.getGender());
          System.out.println(user.getDateOfBirth());
-        /* user.setUsername("gaber92");
+        /* user.setUsername("gaber92"); */
+    }
+}

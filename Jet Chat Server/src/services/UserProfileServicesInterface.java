@@ -6,6 +6,7 @@ package services;
 
 import entity.UserEntity;
 import java.rmi.Remote;
+import java.rmi.RemoteException;
 
 /**
  *
@@ -20,8 +21,8 @@ public interface UserProfileServicesInterface extends Remote{
    static final int DRINKING_COFFEE_MODE = 4;
     
     
-    boolean changeMode(String userName,int userMode);
-    boolean changeStatus(String userName, int userStatus) ;
-    public boolean editeUserInformation(String oldPassword, UserEntity user);
+    boolean changeMode(String userName,int userMode) throws RemoteException;
+    boolean changeStatus(String userName, int userStatus)throws RemoteException;
+    public boolean editeUserInformation(String oldPassword, UserEntity user) throws RemoteException;
     
 }

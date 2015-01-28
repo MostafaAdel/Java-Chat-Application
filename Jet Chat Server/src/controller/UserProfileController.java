@@ -20,11 +20,16 @@ import java.util.logging.Logger;
  */
 public class UserProfileController extends UnicastRemoteObject implements UserProfileServicesInterface, UserProfileControllerInterface{
 
-    public UserProfileController() throws RemoteException{
+    private ServerControllerInterface serverController;
+    
+    
+
+    UserProfileController(ServerController serverController)throws RemoteException{
+        serverController = serverController;
     }
 
     @Override
-    public boolean changeMode(String userName, int userMode) {
+    public boolean changeMode(String userName, int userMode) throws RemoteException{
         try {
             DB_Connection.updateQuery("UPDATE USER SET MODE = ' " + userMode + "'" + "WHERE USERNAME = '" + userName + "'");
 
@@ -37,7 +42,7 @@ public class UserProfileController extends UnicastRemoteObject implements UserPr
     }
 
     @Override
-    public boolean changeStatus(String userName, int userStatus) {
+    public boolean changeStatus(String userName, int userStatus) throws RemoteException{
         try {
             DB_Connection.updateQuery("UPDATE USER SET Status = ' " + userStatus + "'" + "WHERE USERNAME = '" + userName + "'");
 
@@ -49,7 +54,7 @@ public class UserProfileController extends UnicastRemoteObject implements UserPr
     }
 
     @Override
-    public boolean editeUserInformation(String oldPassword, UserEntity user) {
+    public boolean editeUserInformation(String oldPassword, UserEntity user) throws RemoteException{
 
         try {
             System.out.println("oldPassowrd" + oldPassword);
