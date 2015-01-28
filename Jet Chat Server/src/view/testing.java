@@ -51,15 +51,3 @@ public class testing {
          System.out.println(user.getGender());
          System.out.println(user.getDateOfBirth());
         /* user.setUsername("gaber92");
->>>>>>> origin/master
-         user.setUserPassword("12345");
-         user.setFirstName("Mohamed");
-         user.setLastName("Gaber");
-         user.setGender('M');
-         user.setMobileNumber("101020324");
-         user.setMode(1);
-         client.singUp(user);*/
-        // FreindshipController freind=new FreindshipController(); 
-         //freind.addFreind("rania", "may");
-    }
-}
