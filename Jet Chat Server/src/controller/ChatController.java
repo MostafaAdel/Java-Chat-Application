@@ -12,6 +12,7 @@ import java.rmi.server.RemoteObject;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.*;
 import services.ChatServiceInterface;
+import services.ServerServicesInterface;
 
 
 public class ChatController extends UnicastRemoteObject implements ChatControllerInterface, ChatServiceInterface {
@@ -43,5 +44,10 @@ public class ChatController extends UnicastRemoteObject implements ChatControlle
             
         
         return group;
+    }
+
+    @Override
+    public ServerServicesInterface getService(int serviceNumber) throws RemoteException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
