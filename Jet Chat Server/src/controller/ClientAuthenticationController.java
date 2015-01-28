@@ -5,8 +5,12 @@
  */
 package controller;
 
+
+import services.*;
 import db.com.DB_Connection;
 import entity.UserEntity;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -20,7 +24,7 @@ import javax.swing.ImageIcon;
 /**
  * @pdOid a65e1049-0ed2-4c53-b7cc-5708c8135857
  */
-public class ClientAuthenticationController implements ClientAuthenticationControllerInterface {
+public class ClientAuthenticationController extends UnicastRemoteObject implements ClientAuthenticationServiceInterface, ClientAuthenticationControllerInterface {
 
     /**
      * @pdOid 80ebf55c-60b1-4145-b957-7a3b3bfe2355
@@ -33,15 +37,12 @@ public class ClientAuthenticationController implements ClientAuthenticationContr
      * @param controller
      * @pdOid 0245b621-1174-4f8a-9f8b-ae266a5e1167
      */
-    ClientAuthenticationController(ServerController controller) {
+    ClientAuthenticationController(ServerController controller) throws RemoteException{
 
         this.ServerController = controller;
     }
 
-    public ClientAuthenticationController() {
-
-    }
-
+    
     /**
      * @param userName
      * @pdOid e11ba090-748b-4ea3-babe-e9b25a5d4fa9
@@ -52,7 +53,7 @@ public class ClientAuthenticationController implements ClientAuthenticationContr
      * @pdOid c399a949-29b3-4779-8bff-9ab9d5d71ffe
      */
     @Override
-    public UserEntity userViewData(String userName) {
+    public UserEntity userViewData(String userName) throws RemoteException{
         UserEntity user = new UserEntity();
         try {
             ResultSet result;
@@ -85,7 +86,7 @@ public class ClientAuthenticationController implements ClientAuthenticationContr
      * @param password
      * @pdOid 47782f03-aaf6-4f26-85db-06e03b6da19a
      */
-    public boolean singIN(String username, String password) {
+    public boolean singIN(String username, String password) throws RemoteException{
         try {
             ResultSet result;
             result = DB_Connection.selectQuery("SELECT USERNAME, USERPASSWORD FROM USER");
@@ -112,7 +113,7 @@ public class ClientAuthenticationController implements ClientAuthenticationContr
     /**
      * @param UserEntity user
      */
-    public boolean singUp(UserEntity user) {
+    public boolean singUp(UserEntity user) throws RemoteException{
         try {
             int status  = 0;
             if (user.isStatus()) {
@@ -132,7 +133,7 @@ public class ClientAuthenticationController implements ClientAuthenticationContr
     }
 
     @Override
-    public boolean singOut(String username) {
+    public boolean singOut(String username) throws RemoteException{
         return false;
     }
 

@@ -341,7 +341,8 @@ public class FriendListScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_statusActionPerformed
 
     private void friendListValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_friendListValueChanged
-
+        Chatting chat = new Chatting();
+        chat.setVisible(true);
 
     }//GEN-LAST:event_friendListValueChanged
 
