@@ -29,12 +29,29 @@ public class ClientMainController extends UnicastRemoteObject implements ClientC
     ChatCallbackInterface chatCallbackInterface;
     ChatGroupCallbackInterface chatGroupCallbackInterface;
     ProfileControllerInterface profileControllerInterface;
-    Registry registry;
+    private Registry registry;
+    public ServerServicesInterface serverServices;
+    UserEntity userData;
     
     ClientMainController() throws RemoteException {
         
         registry = LocateRegistry.getRegistry("127.0.0.1", 1993);
+        try {
+            serverServices = (ServerServicesInterface) registry.lookup("ChatServices");
+        } catch (NotBoundException ex) {
+            Logger.getLogger(ClientMainController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (AccessException ex) {
+            Logger.getLogger(ClientMainController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
+        profileControllerInterface = new ProfileController(this);
+        
+        
+        //----for testing-----
+//        ClientAuthenticationServiceInterface auth = (ClientAuthenticationServiceInterface) serverServices.getService(ServerServicesInterface.AUTHENTICATION_SERVICE);
+//        userData = auth.userViewData("mostafa90");
+//        profileControllerInterface.changeMobile("01286737088");
+        //-----for testing----
     }
     
     public static void main(String[] args) {

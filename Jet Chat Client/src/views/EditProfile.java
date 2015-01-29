@@ -8,7 +8,7 @@
  *
  * Created on Jan 22, 2015, 3:11:05 AM
  */
-package com.jetchat;
+package views;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,7 +21,7 @@ import javax.swing.filechooser.FileFilter;
  *
  * @author Ahmed
  */
-public class EditProfile extends javax.swing.JFrame {
+public class EditProfile extends javax.swing.JFrame implements ProfileInfoViewInterface{
 
     JFileChooser openfile;
 
@@ -321,6 +321,26 @@ public class EditProfile extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void changeName() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void changePassword() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void changeMobile() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void changeImage() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
 
 class MyButtonListener extends FileFilter implements ActionListener {
